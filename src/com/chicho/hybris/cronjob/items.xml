@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<itemtype code="LubeChartIntegrationCronJob" generate="true"
+	autocreate="true" jaloclass="de.hybris.cronjob.jalo.LubeChartIntegrationCronJob"
+	extends="CronJob">
+	<attributes>
+		<attribute type="catalogversion" qualifier="catalogVersion">
+			<persistence type="property" />
+			<modifiers optional="true" />
+		</attribute>
+	</attributes>
+</itemtype>
