@@ -1,4 +1,4 @@
-package com.chicho.resttemplate;
+package com.chicho.java.resttemplate;
 import java.nio.charset.Charset;
 
 import org.apache.commons.codec.binary.Base64;
