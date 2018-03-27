@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="Jars"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Master/git/All-Java-Programs/Jars/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Master/git/All-Java-Programs/Jars/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Master/git/All-Java-Programs/Jars/spring-core-5.0.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Master/git/All-Java-Programs/Jars/spring-web-5.0.4.RELEASE.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
