@@ -1,6 +1,6 @@
-package com.chicho.datetime;
+package com.chicho.hybris.queries;
 
-public class DaoImpl {
+public class HybrisQueries {
 	
 	public static final String IMO = "imo";
 	private static final String ALLSHIPTOS_QUERY = "SELECT DISTINCT {pk} FROM {ShipToB2Bunit} WHERE {imo} =?imo";

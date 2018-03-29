@@ -1,4 +1,4 @@
-package com.chicho.datetime;
+package com.chicho.java.datetime;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
