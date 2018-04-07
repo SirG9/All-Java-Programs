@@ -1,9 +1,9 @@
 package com.chicho.java.comparable;
 
 public class Student implements Comparable<Student> {
-	int rollno;
-	String name;
-	int age;
+	public int rollno;
+	public String name;
+	public int age;
 
 	public Student(int rollno, String name, int age) {
 		super();
