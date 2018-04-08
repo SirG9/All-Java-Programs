@@ -1,9 +1,9 @@
 package com.chicho.java.collections;
 
 /* Java program to demonstrate working of Comparator interface and Collections.sort() to sort according to user defined criteria. */
-import java.util.*;
-import java.lang.*;
-import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 class Student {
 	int rollno;
