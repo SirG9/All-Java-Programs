@@ -3,9 +3,17 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="Jars"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Master/git/All-Java-Programs/Jars/commons-codec-1.9.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Master/git/All-Java-Programs/Jars/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Master/git/All-Java-Programs/Jars/spring-core-5.0.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Master/git/All-Java-Programs/Jars/spring-web-5.0.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CH318977/git/All-Java-Programs/spring_jars/core/com.springsource.org.apache.commons.logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CH318977/git/All-Java-Programs/spring_jars/core/com.springsource.org.apache.log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CH318977/git/All-Java-Programs/spring_jars/core/jmxtools-1.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CH318977/git/All-Java-Programs/spring_jars/core/org.springframework.asm-3.0.1.RELEASE-A.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CH318977/git/All-Java-Programs/spring_jars/core/org.springframework.beans-3.0.1.RELEASE-A.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CH318977/git/All-Java-Programs/spring_jars/core/org.springframework.context-3.0.1.RELEASE-A.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CH318977/git/All-Java-Programs/spring_jars/core/org.springframework.core-3.0.1.RELEASE-A.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CH318977/git/All-Java-Programs/spring_jars/core/org.springframework.expression-3.0.1.RELEASE-A.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CH318977/git/All-Java-Programs/Jars/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CH318977/git/All-Java-Programs/Jars/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CH318977/git/All-Java-Programs/Jars/spring-core-5.0.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/CH318977/git/All-Java-Programs/Jars/spring-web-5.0.4.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
