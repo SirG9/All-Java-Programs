@@ -1,7 +1,7 @@
 package com.chicho.java.swing.joptionpane;
 
 /**
- * 	Author:			Sean Thames
+ * 	Author:			Chicho
  * 	Class:			CIST-2372
  * 	Date:			2013-05-22
  * 	Filename:		Quiz.java
