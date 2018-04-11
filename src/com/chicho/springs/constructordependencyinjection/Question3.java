@@ -1,4 +1,4 @@
-package com.chicho.springs.dependencyinjection;
+package com.chicho.springs.constructordependencyinjection;
 
 import java.util.Iterator;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.chicho.springs.dependencyinjection;
+package com.chicho.springs.constructordependencyinjection;
 
 public class User4 {
 	private int id;
