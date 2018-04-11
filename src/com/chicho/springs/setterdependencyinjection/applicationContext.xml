@@ -40,4 +40,70 @@
 			</list>
 		</property>
 	</bean>
+
+	<bean id="answer1" class="com.chicho.springs.setterdependencyinjection.Answer2">
+		<property name="id" value="1"></property>
+		<property name="name" value="Java is a programming language"></property>
+		<property name="by" value="Richa Malik"></property>
+	</bean>
+	<bean id="answer2" class="com.chicho.springs.setterdependencyinjection.Answer2">
+		<property name="id" value="2"></property>
+		<property name="name" value="Java is a platform"></property>
+		<property name="by" value="Saket"></property>
+	</bean>
+
+	<bean id="q2" class="com.chicho.springs.setterdependencyinjection.Question2">
+		<property name="id" value="1"></property>
+		<property name="name" value="What is Java?"></property>
+		<property name="answers">
+			<list>
+				<ref bean="answer1" />
+				<ref bean="answer2" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="q3" class="com.chicho.springs.setterdependencyinjection.Question3">
+		<property name="id" value="1"></property>
+		<property name="name" value="What is Java?"></property>
+		<property name="answers">
+			<map>
+				<entry key="Java is a programming language" value="Sagar Agarwal"></entry>
+				<entry key="Java is a Platform" value="Rahim Tamboli"></entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="answer41" class="com.chicho.springs.setterdependencyinjection.Answer4">
+		<property name="id" value="1"></property>
+		<property name="answer" value="Java is a Programming Language"></property>
+		<property name="postedDate" value="12/12/2001"></property>
+	</bean>
+	<bean id="answer42" class="com.chicho.springs.setterdependencyinjection.Answer4">
+		<property name="id" value="2"></property>
+		<property name="answer" value="Java is a Platform"></property>
+		<property name="postedDate" value="12/12/2003"></property>
+	</bean>
+
+	<bean id="user41" class="com.chicho.springs.setterdependencyinjection.User4">
+		<property name="id" value="1"></property>
+		<property name="name" value="Akshay Kumar"></property>
+		<property name="email" value="akshay@gmail.com"></property>
+	</bean>
+	<bean id="user42" class="com.chicho.springs.setterdependencyinjection.User4">
+		<property name="id" value="2"></property>
+		<property name="name" value="Varun Dhawan"></property>
+		<property name="email" value="Varun@gmail.com"></property>
+	</bean>
+
+	<bean id="q4" class="com.chicho.springs.setterdependencyinjection.Question4">
+		<property name="id" value="1"></property>
+		<property name="name" value="What is Java?"></property>
+		<property name="answers">
+			<map>
+				<entry key-ref="answer41" value-ref="user41"></entry>
+				<entry key-ref="answer42" value-ref="user42"></entry>
+			</map>
+		</property>
+	</bean>
 </beans>
