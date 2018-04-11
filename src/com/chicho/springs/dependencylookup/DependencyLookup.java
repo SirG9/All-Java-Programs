@@ -1,4 +1,4 @@
-package com.chicho.springs.dependencyinjection;
+package com.chicho.springs.dependencylookup;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

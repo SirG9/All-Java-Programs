@@ -1,4 +1,4 @@
-package com.chicho.springs.dependencyinjection;
+package com.chicho.springs.dependencylookup;
 
 public interface A {
 	void methodA();
