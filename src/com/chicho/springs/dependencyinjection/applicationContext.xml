@@ -21,4 +21,83 @@
 			by default string type constructor will be invoked. -->
 	</bean>
 
+	<bean id="q" class="com.chicho.springs.dependencyinjection.Question">
+		<constructor-arg value="111"></constructor-arg>
+		<constructor-arg value="What is java?"></constructor-arg>
+		<constructor-arg>
+			<list>
+				<value>Java is a programming language</value>
+				<value>Java is a Platform</value>
+				<value>Java is an Island of Indonesia</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="ans1" class="com.chicho.springs.dependencyinjection.Answer">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="Java is a programming language"></constructor-arg>
+		<constructor-arg value="John"></constructor-arg>
+	</bean>
+
+	<bean id="ans2" class="com.chicho.springs.dependencyinjection.Answer">
+		<constructor-arg value="2"></constructor-arg>
+		<constructor-arg value="Java is a Platform"></constructor-arg>
+		<constructor-arg value="Ravi"></constructor-arg>
+	</bean>
+
+	<bean id="q2" class="com.chicho.springs.dependencyinjection.Question2">
+		<constructor-arg value="111"></constructor-arg>
+		<constructor-arg value="What is java?"></constructor-arg>
+		<constructor-arg>
+			<list>
+				<ref bean="ans1" />
+				<ref bean="ans2" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="q3" class="com.chicho.springs.dependencyinjection.Question3">
+		<constructor-arg value="11"></constructor-arg>
+		<constructor-arg value="What is Java?"></constructor-arg>
+		<constructor-arg>
+			<map>
+				<entry key="Java is a Programming Language" value="Ajay Kumar"></entry>
+				<entry key="Java is a Platform" value="John Smith"></entry>
+				<entry key="Java is an Island" value="Raj Kumar"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="answer1" class="com.chicho.springs.dependencyinjection.Answer4">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="Java is a Programming Language"></constructor-arg>
+		<constructor-arg value="12/12/2001"></constructor-arg>
+	</bean>
+	<bean id="answer2" class="com.chicho.springs.dependencyinjection.Answer4">
+		<constructor-arg value="2"></constructor-arg>
+		<constructor-arg value="Java is a Platform"></constructor-arg>
+		<constructor-arg value="12/12/2003"></constructor-arg>
+	</bean>
+
+	<bean id="user1" class="com.chicho.springs.dependencyinjection.User4">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="Arun Kumar"></constructor-arg>
+		<constructor-arg value="arun@gmail.com"></constructor-arg>
+	</bean>
+	<bean id="user2" class="com.chicho.springs.dependencyinjection.User4">
+		<constructor-arg value="2"></constructor-arg>
+		<constructor-arg value="Varun Kumar"></constructor-arg>
+		<constructor-arg value="Varun@gmail.com"></constructor-arg>
+	</bean>
+
+	<bean id="q4" class="com.chicho.springs.dependencyinjection.Question4">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="What is Java?"></constructor-arg>
+		<constructor-arg>
+			<map>
+				<entry key-ref="answer1" value-ref="user1"></entry>
+				<entry key-ref="answer2" value-ref="user2"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
 </beans>
