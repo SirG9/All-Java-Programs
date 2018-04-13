@@ -1,4 +1,4 @@
-package com.chicho.springs.aop.MethodBeforeAdvice;
+package com.chicho.springs.aop.afterreturningadvice;
 
 public class A {
 	public void m() {

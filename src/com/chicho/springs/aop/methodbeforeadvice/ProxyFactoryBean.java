@@ -1,4 +1,4 @@
-package com.chicho.springs.aop.MethodBeforeAdvice;
+package com.chicho.springs.aop.methodbeforeadvice;
 
 import java.util.List;
 

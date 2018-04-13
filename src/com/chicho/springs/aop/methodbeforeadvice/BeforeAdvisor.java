@@ -1,4 +1,4 @@
-package com.chicho.springs.aop.MethodBeforeAdvice;
+package com.chicho.springs.aop.methodbeforeadvice;
 
 import java.lang.reflect.Method;
 import org.springframework.aop.MethodBeforeAdvice;

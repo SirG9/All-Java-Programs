@@ -1,4 +1,4 @@
-package com.chicho.springs.aop.AfterReturningAdvice;
+package com.chicho.springs.aop.afterreturningadvice;
 
 import java.lang.reflect.Method;
 import org.springframework.aop.AfterReturningAdvice;

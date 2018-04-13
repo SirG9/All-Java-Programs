@@ -1,4 +1,4 @@
-package com.chicho.springs.aop.AfterReturningAdvice;
+package com.chicho.springs.aop.afterreturningadvice;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -7,7 +7,7 @@ import org.springframework.core.io.Resource;
 
 public class Test {
 	public static void main(String[] args) {
-		Resource r = new ClassPathResource("com/chicho/springs/aop/AfterReturningAdvice/applicationContext.xml");
+		Resource r = new ClassPathResource("com/chicho/springs/aop/afterreturningadvice/applicationContext.xml");
 		BeanFactory factory = new XmlBeanFactory(r);
 
 		A a = factory.getBean("proxy", A.class);
