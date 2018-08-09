@@ -11,9 +11,14 @@ public class MapperExample {
 
 		names.stream().filter(name -> isNotSandip(name)).map(name -> new User(name))
 				.forEach(anything -> System.out.println(anything));
-		
+
+		names.stream().filter(MapperExample::isNotSandip).map(User::new).forEach(System.out::println);
+
 		List<User> userList = names.stream().filter(name -> isNotSandip(name)).map(name -> new User(name))
-		.collect(Collectors.toList());
+				.collect(Collectors.toList());
+
+		// .forEach and .collect are terminal operations, and beyond that you
+		// cannot do anything.
 	}
 
 	private static Boolean isNotSandip(String name) {

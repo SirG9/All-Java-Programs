@@ -20,6 +20,7 @@ public class MapperInt {
 		.collect(Collectors.toList());
 		
 		int sum  = userList.stream().mapToInt(userList1 -> userList1.getAge()).sum();
+		//int sum1  = userList.stream().mapToInt(User::getAge).sum();
 		System.out.println(sum);
 		
 	}
