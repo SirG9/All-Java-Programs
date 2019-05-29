@@ -8,6 +8,10 @@ public class Last4Digit {
 		System.out.println("Last4Digit: "+last4Digits);
 		
 		System.out.println("Bin Number: "+cardNumber.substring(0,6));
+		
+//		For Example, for sequence "abc" we have
+//		substring: a, ab, abc, b, bc, b and the empty substring. (n(n+1)/2) 
+//		subsequence: a, b, c, ab, bc, ac, abc and the empty subsequence. ((2^n)-1)
 	}
 
 }
