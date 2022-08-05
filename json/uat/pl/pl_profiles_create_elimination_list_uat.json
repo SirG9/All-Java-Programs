@@ -1,0 +1,47 @@
+{
+  "name": "pl_profiles_create_elimination_list_uat",
+  "properties": {
+    "activities": [
+      {
+        "name": "Create Eliminated Profiles List",
+        "type": "ExecuteDataFlow",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "1.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "dataflow": {
+            "referenceName": "df_count_na_ca_profiles_elimination_uat",
+            "type": "DataFlowReference",
+            "parameters": {
+              "bannedDomainPara": "\"Email belongs to restricted domain\"",
+              "loginPara": "\"Not logged in since 1 year\"",
+              "createdPara": "\"Email not verified and profile created date is more than 1 year\"",
+              "isRegisteredPara": "\"Profile is not registered and created date is more than 1 year\"",
+              "nullEmails": "\"Email address is null, invalid profile\"",
+              "eliCA": "\"Eliminated CA Profile\"",
+              "ret": "\"Retained Profile\"",
+              "eliNA": "\"Eliminated NA Profile\""
+            }
+          },
+          "integrationRuntime": {
+            "referenceName": "Azure-Secured-Integration-Runtime",
+            "type": "IntegrationRuntimeReference"
+          },
+          "traceLevel": "Fine"
+        }
+      }
+    ],
+    "folder": {
+      "name": "ccore/TDATA-4391/uat"
+    },
+    "annotations": [],
+    "lastPublishTime": "2022-08-02T13:21:46Z"
+  },
+  "type": "Microsoft.DataFactory/factories/pipelines"
+}

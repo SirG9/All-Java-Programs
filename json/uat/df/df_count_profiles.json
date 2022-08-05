@@ -1,0 +1,330 @@
+{
+  "name": "df_count_profiles",
+  "properties": {
+    "folder": {
+      "name": "D_datamigration/TDATA-4391"
+    },
+    "type": "MappingDataFlow",
+    "typeProperties": {
+      "sources": [
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_na_profiles_eliminated_uat",
+            "type": "DatasetReference"
+          },
+          "name": "NaProfilesEliminated"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_ca_profiles_eliminated_uat",
+            "type": "DatasetReference"
+          },
+          "name": "CaProfilesEliminated"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_ca_profiles_retained_uat",
+            "type": "DatasetReference"
+          },
+          "name": "CaProfilesRetained"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_na_profiles_count_uat",
+            "type": "DatasetReference"
+          },
+          "name": "SourceSinkProfiles"
+        }
+      ],
+      "sinks": [
+        {
+          "name": "CacheSinkNaEliminatedProfilesCount"
+        },
+        {
+          "name": "CacheSinkCaEliminatedProfilesCount"
+        },
+        {
+          "name": "CacheSinkNotVipAccounts"
+        },
+        {
+          "name": "CacheSinkVipAccounts"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_na_profiles_count_uat",
+            "type": "DatasetReference"
+          },
+          "name": "SinkProfilesCounts"
+        },
+        {
+          "name": "CacheSinkPlatinumVipAccounts"
+        },
+        {
+          "name": "CacheSinkVipSpend300to499"
+        },
+        {
+          "name": "CacheSinkVipSpendLessThan299"
+        },
+        {
+          "name": "CacheSinkVipSpendGreaterThan500"
+        }
+      ],
+      "transformations": [
+        {
+          "name": "CountNaEliminatedProfiles"
+        },
+        {
+          "name": "selectNaEliminatedProfiles"
+        },
+        {
+          "name": "CountCaEliminatedProfiles"
+        },
+        {
+          "name": "selectCaEliminatedProfiles"
+        },
+        {
+          "name": "SelectVipInfo"
+        },
+        {
+          "name": "FilterNotVip"
+        },
+        {
+          "name": "CountNotVip"
+        },
+        {
+          "name": "FilterVip"
+        },
+        {
+          "name": "CountVip"
+        },
+        {
+          "name": "CountColumns"
+        },
+        {
+          "name": "FilterPlatinumVip"
+        },
+        {
+          "name": "CountPlatinumVip"
+        },
+        {
+          "name": "filter300to499"
+        },
+        {
+          "name": "VipDollarSpentValue"
+        },
+        {
+          "name": "Count300to499ProfileAccounts"
+        },
+        {
+          "name": "filterLessThan299"
+        },
+        {
+          "name": "CountLessThan299"
+        },
+        {
+          "name": "filterGreaterThan500"
+        },
+        {
+          "name": "CountGreaterThan500"
+        }
+      ],
+      "scriptLines": [
+        "source(output(",
+        "          created as long,",
+        "          customerId as string,",
+        "          eliminationReason as string,",
+        "          email as string,",
+        "          emailVerified as long,",
+        "          isRegistered as boolean,",
+        "          janrainUuid as string,",
+        "          lastLogin as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     format: 'document') ~> NaProfilesEliminated",
+        "source(output(",
+        "          eliminationReason as string,",
+        "          emailVerified as integer,",
+        "          janrainUuid as string,",
+        "          created as integer,",
+        "          customerId as string,",
+        "          isRegistered as boolean,",
+        "          email as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     format: 'document') ~> CaProfilesEliminated",
+        "source(output(",
+        "          bannerOfOrigin as string,",
+        "          birthday as date,",
+        "          changedBy as string,",
+        "          changedFields as string,",
+        "          country as string,",
+        "          created as long,",
+        "          createdBy as string,",
+        "          csaInfo as (csaAgentEmail as string, zendeskTicketNumber as string),",
+        "          customerFlag as string,",
+        "          customerId as string,",
+        "          email as string,",
+        "          emailHistory as (emailAddress as string, modificationTS as string)[],",
+        "          emailVerified as long,",
+        "          event as string,",
+        "          failedLoginAttempts as integer,",
+        "          firstName as string,",
+        "          flxInfo as (ctNumber as integer, flxEmailOptIn as boolean, flxNumber as integer, flxTcVersion as string, loyaltyFlxEmailOptInBanner as string, loyaltyStatus as boolean, points as integer, referralCode as string, tier as string),",
+        "          fraudFlag as string[],",
+        "          homeNumber as long,",
+        "          inStoreSignUp as boolean,",
+        "          isRegistered as boolean,",
+        "          janrainUuid as string,",
+        "          lastFailedLogin as string,",
+        "          lastLogin as string,",
+        "          lastName as string,",
+        "          militaryExpiryDate as string,",
+        "          militaryRequestId as string,",
+        "          militaryStatus as string,",
+        "          mobileNumber as long,",
+        "          oldCsCid as string,",
+        "          oldEbCid as string,",
+        "          oldFaCid as string,",
+        "          oldFlCid as string,",
+        "          oldFlcaCid as string,",
+        "          oldFsCid as string,",
+        "          oldKflCid as string,",
+        "          oldLflCid as string,",
+        "          optIns as (banner as string)[],",
+        "          passwordChangeDate as string,",
+        "          preferredLanguage as string,",
+        "          previousEmail as string,",
+        "          profileStatus as string,",
+        "          relateFailure as boolean,",
+        "          schDefaultBillingAddressLine1 as string,",
+        "          schDefaultShippingAddressLine1 as string,",
+        "          storeNumber as string,",
+        "          token as string,",
+        "          updateTs as long,",
+        "          updateTsExceptLogin as long,",
+        "          vipInfo as (dollarsNeedToSpend as (currencyIso as string, formattedValue as string, value as short), dollarsSpent as (currencyIso as string, formattedValue as string, value as boolean), isVip as boolean, lastLevelMoveDate as long, lastLevelUpdateDateHyb as long, lifeTimePoints as integer, loyaltyExpireDate as long, loyaltyMinThreshold as (currencyIso as string, formattedValue as string, value as integer), loyaltyTargetThreshold as (currencyIso as string, formattedValue as string, value as short), status as string, vipNumber as string),",
+        "          webhookMessageStatus as string,",
+        "          xstoreId as string,",
+        "          zipCode as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     format: 'document') ~> CaProfilesRetained",
+        "source(output(",
+        "          {What?} as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     format: 'document') ~> SourceSinkProfiles",
+        "NaProfilesEliminated aggregate(result = count(email)) ~> CountNaEliminatedProfiles",
+        "CountNaEliminatedProfiles select(mapColumn(",
+        "          result",
+        "     ),",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true) ~> selectNaEliminatedProfiles",
+        "CaProfilesEliminated aggregate(result = count(email)) ~> CountCaEliminatedProfiles",
+        "CountCaEliminatedProfiles select(mapColumn(",
+        "          result",
+        "     ),",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true) ~> selectCaEliminatedProfiles",
+        "CaProfilesRetained select(mapColumn(",
+        "          email,",
+        "          vipInfo",
+        "     ),",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true) ~> SelectVipInfo",
+        "SelectVipInfo filter(isNull(vipInfo.status)) ~> FilterNotVip",
+        "FilterNotVip aggregate(result = count(email)) ~> CountNotVip",
+        "SelectVipInfo filter(equalsIgnoreCase(email, 'VIP')) ~> FilterVip",
+        "FilterVip aggregate(result = count(email)) ~> CountVip",
+        "SourceSinkProfiles derive({Na Eliminated Profiles} = CacheSinkNaEliminatedProfilesCount#outputs()[1].result,",
+        "          {Ca Eliminated Profiles} = CacheSinkCaEliminatedProfilesCount#outputs()[1].result,",
+        "          {Not VIP Accounts} = CacheSinkNotVipAccounts#outputs()[1].result,",
+        "          {VIP Accounts} = CacheSinkVipAccounts#outputs()[1].result,",
+        "          {Platinum VIP Accounts} = CacheSinkPlatinumVipAccounts#outputs()[1].result) ~> CountColumns",
+        "SelectVipInfo filter(equalsIgnoreCase(email, 'Platinum VIP')) ~> FilterPlatinumVip",
+        "FilterPlatinumVip aggregate(result = count(email)) ~> CountPlatinumVip",
+        "VipDollarSpentValue filter(and(vipDollarSpent >= 300, vipDollarSpent <= 499)) ~> filter300to499",
+        "SelectVipInfo derive(vipDollarSpent = toInteger(replace(vipInfo.dollarsSpent.formattedValue, '$', ''))) ~> VipDollarSpentValue",
+        "filter300to499 aggregate(result = count(email)) ~> Count300to499ProfileAccounts",
+        "VipDollarSpentValue filter(vipDollarSpent <= 299) ~> filterLessThan299",
+        "filterLessThan299 aggregate(result = count(email)) ~> CountLessThan299",
+        "VipDollarSpentValue filter(vipDollarSpent >= 500) ~> filterGreaterThan500",
+        "filterGreaterThan500 aggregate(result = count(email)) ~> CountGreaterThan500",
+        "selectNaEliminatedProfiles sink(allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 1) ~> CacheSinkNaEliminatedProfilesCount",
+        "selectCaEliminatedProfiles sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 1) ~> CacheSinkCaEliminatedProfilesCount",
+        "CountNotVip sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 1) ~> CacheSinkNotVipAccounts",
+        "CountVip sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 1) ~> CacheSinkVipAccounts",
+        "CountColumns sink(allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     deletable:false,",
+        "     insertable:true,",
+        "     updateable:false,",
+        "     upsertable:false,",
+        "     recreate:true,",
+        "     format: 'document',",
+        "     batchSize: 5000,",
+        "     partitionKey: ['/id'],",
+        "     throughput: 10000,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true) ~> SinkProfilesCounts",
+        "CountPlatinumVip sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 1) ~> CacheSinkPlatinumVipAccounts",
+        "Count300to499ProfileAccounts sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 1) ~> CacheSinkVipSpend300to499",
+        "CountLessThan299 sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 1) ~> CacheSinkVipSpendLessThan299",
+        "CountGreaterThan500 sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 1) ~> CacheSinkVipSpendGreaterThan500"
+      ]
+    }
+  }
+}

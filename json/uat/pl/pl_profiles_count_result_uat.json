@@ -1,0 +1,40 @@
+{
+  "name": "pl_profiles_count_result_uat",
+  "properties": {
+    "activities": [
+      {
+        "name": "Get Count Result",
+        "type": "ExecuteDataFlow",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "1.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "dataflow": {
+            "referenceName": "df_count_na_ca_profiles",
+            "type": "DataFlowReference",
+            "parameters": {
+              "eliCA": "\"Eliminated CA Profile\""
+            }
+          },
+          "integrationRuntime": {
+            "referenceName": "Azure-Secured-Integration-Runtime",
+            "type": "IntegrationRuntimeReference"
+          },
+          "traceLevel": "Fine"
+        }
+      }
+    ],
+    "folder": {
+      "name": "ccore/TDATA-4391/uat"
+    },
+    "annotations": [],
+    "lastPublishTime": "2022-08-02T12:04:46Z"
+  },
+  "type": "Microsoft.DataFactory/factories/pipelines"
+}

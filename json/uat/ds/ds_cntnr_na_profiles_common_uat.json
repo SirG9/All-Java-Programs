@@ -1,0 +1,142 @@
+{
+  "name": "ds_cntnr_na_profiles_common_uat",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "ls_db_cosmos_ccore_na_uat",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/TDATA-4433/uat"
+    },
+    "annotations": [],
+    "type": "CosmosDbSqlApiCollection",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "lastName": {
+          "type": "string"
+        },
+        "flxInfo": {
+          "type": "object",
+          "properties": {
+            "flxEmailOptIn": {
+              "type": "string"
+            },
+            "loyaltyStatus": {
+              "type": "boolean"
+            },
+            "flxTcVersion": {
+              "type": "string"
+            },
+            "tier": {
+              "type": "string"
+            },
+            "flxNumber": {
+              "type": "string"
+            },
+            "ctNumber": {
+              "type": "string"
+            },
+            "points": {
+              "type": "string"
+            },
+            "loyaltyFlxEmailOptInBanner": {
+              "type": "string"
+            }
+          }
+        },
+        "created": {
+          "type": "string"
+        },
+        "profileStatus": {
+          "type": "string"
+        },
+        "changedFields": {
+          "type": "string"
+        },
+        "emailHistory": {
+          "type": "array"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "militaryStatus": {
+          "type": "string"
+        },
+        "janrainUuid": {
+          "type": "string"
+        },
+        "inStoreSignUp": {
+          "type": "boolean"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "isRegistered": {
+          "type": "boolean"
+        },
+        "event": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string"
+        },
+        "changedBy": {
+          "type": "string"
+        },
+        "oldFlCid": {
+          "type": "string"
+        },
+        "oldCsCid": {
+          "type": "string"
+        },
+        "oldFaCid": {
+          "type": "string"
+        },
+        "oldEbCid": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "mobileNumber": {
+          "type": "integer"
+        },
+        "schDefaultShippingAddressLine1": {
+          "type": "string"
+        },
+        "schDefaultBillingAddressLine1": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "storeNumber": {
+          "type": "string"
+        },
+        "preferredLanguage": {
+          "type": "string"
+        },
+        "relateCustomerId": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "bannerOfOrigin": {
+          "type": "string"
+        }
+      }
+    },
+    "typeProperties": {
+      "collectionName": "profiles_common"
+    }
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "ds_cntnr_na_profiles_count_uat",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "ls_db_cosmos_ccore_na_uat",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/TDATA-4433/uat"
+    },
+    "annotations": [],
+    "type": "CosmosDbSqlApiCollection",
+    "schema": {},
+    "typeProperties": {
+      "collectionName": "profiles_count"
+    }
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}
