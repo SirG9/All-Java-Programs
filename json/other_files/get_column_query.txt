@@ -1,1 +1,7 @@
+Profile Columns:
+-----------------
 select c.id, c.updateTs, c.firstName, c.lastName, c.email, c.profileStatus, c.token, c.emailHistory, c.customerId, c.preferredStores, c.mobileNumber, c.homeNumber, c.isRegistered, c.zipCode, c.schDefaultBillingAddressLine1, c.schDefaultShippingAddressLine1, c.region, c.webhookMessageStatus, c.janrainUuid, c.oldFlCid, c.oldKflCid, c.oldLflCid, c.oldFsCid, c.oldFaCid, c.oldCsCid, c.oldFlcaCid, c.oldEbCid, c.fraudFlag, c.bannerOfOrigin, c.emailVerified, c.militaryStatus, c.militaryRequestId, c.militaryExpiryDate, c.storeNumber, c.previousEmail, c.password, c.flxInfo, c.optIns, c.created, c.birthday, c.inStoreSignUp, c.createdBy, c.xstoreId, c.retailStoreId, c.relateFailure, c.changedFields, c.csaInfo, c.customerFlag, c.event, c.changedBy, c.vipInfo, c.preferredLanguage, c.lastLogin, c.lastFailedLogin, c.passwordChangeDate, c.failedLoginAttempts, c.streetAddress, c.country, c.gender, c.customerSyncStatus, c.updateTsExceptLogin, c.relateCustomerId from c
+
+Address Columns:
+-----------------
+select c.id, c.zipCode, c.country, c.city, c.addressType, c.fullName, c.defaultBilling, c.stateName, c.customerId, c.linkAddressId, c.addressLine1, c.addressLine2, c.addressLine3, c.state, c.countryName, c.updateTs, c.email, c.defaultShipping, c.firstName, c.lastName, c.phone, c.isFPO, c.regionFPO from c
