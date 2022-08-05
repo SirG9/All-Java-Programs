@@ -1,0 +1,276 @@
+{
+  "name": "ds_cntnr_ca_profile_stg",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "cms_stage_ca",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/stg"
+    },
+    "annotations": [],
+    "type": "CosmosDbSqlApiCollection",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "csaInfo": {
+          "type": "object",
+          "properties": {
+            "csaAgentEmail": {
+              "type": "string"
+            },
+            "zendeskTicketNumber": {
+              "type": "string"
+            }
+          }
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "lastLogin": {
+          "type": "null"
+        },
+        "storeNumber": {
+          "type": "string"
+        },
+        "flxInfo": {
+          "type": "object",
+          "properties": {
+            "flxTcVersion": {
+              "type": "string"
+            },
+            "tier": {
+              "type": "string"
+            },
+            "flxNumber": {
+              "type": "integer"
+            },
+            "referralCode": {
+              "type": "null"
+            },
+            "loyaltyFlxEmailOptInBanner": {
+              "type": "null"
+            },
+            "flxEmailOptIn": {
+              "type": "boolean"
+            },
+            "loyaltyStatus": {
+              "type": "boolean"
+            },
+            "ctNumber": {
+              "type": "integer"
+            },
+            "points": {
+              "type": "integer"
+            }
+          }
+        },
+        "mobileNumber": {
+          "type": "integer"
+        },
+        "profileStatus": {
+          "type": "string"
+        },
+        "lastFailedLogin": {
+          "type": "null"
+        },
+        "oldCsCid": {
+          "type": "string"
+        },
+        "emailHistory": {
+          "type": "null"
+        },
+        "webhookMessageStatus": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "changedBy": {
+          "type": "string"
+        },
+        "oldEbCid": {
+          "type": "string"
+        },
+        "passwordChangeDate": {
+          "type": "string"
+        },
+        "militaryExpiryDate": {
+          "type": "null"
+        },
+        "created": {
+          "type": "integer"
+        },
+        "schDefaultShippingAddressLine1": {
+          "type": "string"
+        },
+        "oldLflCid": {
+          "type": "null"
+        },
+        "failedLoginAttempts": {
+          "type": "integer"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "preferredStores": {
+          "type": "null"
+        },
+        "schDefaultBillingAddressLine1": {
+          "type": "string"
+        },
+        "bannerOfOrigin": {
+          "type": "string"
+        },
+        "militaryStatus": {
+          "type": "string"
+        },
+        "isRegistered": {
+          "type": "boolean"
+        },
+        "region": {
+          "type": "null"
+        },
+        "oldFsCid": {
+          "type": "string"
+        },
+        "birthday": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "preferredLanguage": {
+          "type": "string"
+        },
+        "oldFlCid": {
+          "type": "string"
+        },
+        "militaryRequestId": {
+          "type": "null"
+        },
+        "changedFields": {
+          "type": "string"
+        },
+        "previousEmail": {
+          "type": "null"
+        },
+        "customerFlag": {
+          "type": "null"
+        },
+        "janrainUuid": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "event": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "oldFlcaCid": {
+          "type": "string"
+        },
+        "fraudFlag": {
+          "type": "array"
+        },
+        "token": {
+          "type": "string"
+        },
+        "oldKflCid": {
+          "type": "string"
+        },
+        "emailVerified": {
+          "type": "integer"
+        },
+        "optIns": {
+          "type": "array"
+        },
+        "vipInfo": {
+          "type": "object",
+          "properties": {
+            "dollarsNeedToSpend": {
+              "type": "null"
+            },
+            "loyaltyMinThreshold": {
+              "type": "object",
+              "properties": {
+                "currencyIso": {
+                  "type": "string"
+                },
+                "formattedValue": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "integer"
+                }
+              }
+            },
+            "dollarsSpent": {
+              "type": "null"
+            },
+            "loyaltyTargetThreshold": {
+              "type": "object",
+              "properties": {
+                "currencyIso": {
+                  "type": "string"
+                },
+                "formattedValue": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "integer"
+                }
+              }
+            },
+            "vipNumber": {
+              "type": "string"
+            },
+            "lastLevelUpdateDateHyb": {
+              "type": "integer"
+            },
+            "lastLevelMoveDate": {
+              "type": "null"
+            },
+            "loyaltyExpireDate": {
+              "type": "null"
+            },
+            "isVip": {
+              "type": "boolean"
+            },
+            "lifeTimePoints": {
+              "type": "null"
+            },
+            "status": {
+              "type": "null"
+            }
+          }
+        },
+        "oldFaCid": {
+          "type": "string"
+        },
+        "inStoreSignUp": {
+          "type": "boolean"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "updateTs": {
+          "type": "integer"
+        },
+        "homeNumber": {
+          "type": "null"
+        },
+        "relateFailure": {
+          "type": "null"
+        }
+      }
+    },
+    "typeProperties": {
+      "collectionName": "profile"
+    }
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}

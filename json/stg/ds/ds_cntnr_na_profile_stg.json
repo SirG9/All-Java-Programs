@@ -1,0 +1,126 @@
+{
+  "name": "ds_cntnr_na_profile_stg",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "cms_stage_na",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/stg"
+    },
+    "annotations": [],
+    "type": "CosmosDbSqlApiCollection",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "lastName": {
+          "type": "string"
+        },
+        "zipCode": {
+          "type": "string"
+        },
+        "created": {
+          "type": "integer"
+        },
+        "mobileNumber": {
+          "type": "integer"
+        },
+        "shipAddressLine1": {
+          "type": "string"
+        },
+        "lastOrderDate": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "billAddressLine1": {
+          "type": "string"
+        },
+        "shippingAddress": {
+          "type": "object",
+          "properties": {
+            "zipCode": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "created": {
+              "type": "integer"
+            },
+            "fullName": {
+              "type": "string"
+            },
+            "addressLine1": {
+              "type": "string"
+            },
+            "addressLine2": {
+              "type": "string"
+            },
+            "addressLine3": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            }
+          }
+        },
+        "isRegistered": {
+          "type": "boolean"
+        },
+        "billingAddress": {
+          "type": "object",
+          "properties": {
+            "zipCode": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "created": {
+              "type": "integer"
+            },
+            "fullName": {
+              "type": "string"
+            },
+            "addressLine1": {
+              "type": "string"
+            },
+            "addressLine2": {
+              "type": "string"
+            },
+            "addressLine3": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            }
+          }
+        },
+        "region": {
+          "type": "string"
+        },
+        "homeNumber": {
+          "type": "integer"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "typeProperties": {
+      "collectionName": "profile"
+    }
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}
