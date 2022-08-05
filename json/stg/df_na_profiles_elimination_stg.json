@@ -14,6 +14,13 @@
                         "type": "DatasetReference"
                     },
                     "name": "naProfile"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "ds_cntnr_na_ca_orderer_stg",
+                        "type": "DatasetReference"
+                    },
+                    "name": "orderHistory"
                 }
             ],
             "sinks": [
@@ -95,6 +102,9 @@
                 },
                 {
                     "name": "derivedNullEmailProfiles"
+                },
+                {
+                    "name": "NaProfilesHavingNoOrderHistory"
                 }
             ],
             "scriptLines": [
@@ -173,10 +183,17 @@
                 "     format: 'document',",
                 "     systemColumns: false,",
                 "     throughput: 50000) ~> naProfile",
+                "source(output(",
+                "          customerId as string,",
+                "          email as string",
+                "     ),",
+                "     allowSchemaDrift: true,",
+                "     validateSchema: false,",
+                "     format: 'document') ~> orderHistory",
                 "selectReqCol filter(not(and(isNull(emailVerified), not(greaterOrEqual(toTimestamp(toLong(toString(created)),'yyyy-MM-dd HH:mm:ss'), subDays(currentTimestamp(), 365)))))) ~> EmailVerified",
                 "EmailVerified filter(not(and(isRegistered == toBoolean('FALSE'), not(greaterOrEqual(toTimestamp(toLong(toString(created)),'yyyy-MM-dd HH:mm:ss'), subDays(currentTimestamp(), 365)))))) ~> RegisteredProfile",
                 "RegisteredProfile filter(not(iif(and(isNull(lastLogin),or(bannerOfOrigin == 'flca',bannerOfOrigin == 'csca')), toBoolean('true'), iif(isNull(bannerOfOrigin), toBoolean('true'), and(not(greaterOrEqual(lastLogin,toString(subDays(currentTimestamp(),365)))), or(bannerOfOrigin == 'flca',bannerOfOrigin == 'csca')))))) ~> LoggedInProfile",
-                "naProfile select(mapColumn(",
+                "NaProfilesHavingNoOrderHistory select(mapColumn(",
                 "          email,",
                 "          customerId,",
                 "          isRegistered,",
@@ -198,6 +215,9 @@
                 "DomainWhichAreBanned derive(eliminationReason = $bannedDomainPara) ~> derivedBannedDomain",
                 "selectReqCol filter(isNull(email)) ~> filterNullEmailProfiles",
                 "filterNullEmailProfiles derive(eliminationReason = $nullEmails) ~> derivedNullEmailProfiles",
+                "naProfile, orderHistory exists(naProfile@email == orderHistory@email,",
+                "     negate:true,",
+                "     broadcast: 'auto')~> NaProfilesHavingNoOrderHistory",
                 "derivedEmailNotVerified sink(allowSchemaDrift: true,",
                 "     validateSchema: false,",
                 "     deletable:false,",
@@ -210,7 +230,7 @@
                 "     throughput: 50000,",
                 "     skipDuplicateMapInputs: true,",
                 "     skipDuplicateMapOutputs: true,",
-                "     saveOrder: 2) ~> sinkEmailNotVerifiedProfile",
+                "     saveOrder: 1) ~> sinkEmailNotVerifiedProfile",
                 "derivedNotRegistered sink(allowSchemaDrift: true,",
                 "     validateSchema: false,",
                 "     deletable:false,",
@@ -223,7 +243,7 @@
                 "     throughput: 50000,",
                 "     skipDuplicateMapInputs: true,",
                 "     skipDuplicateMapOutputs: true,",
-                "     saveOrder: 3) ~> sinkNotRegisteredProfile",
+                "     saveOrder: 1) ~> sinkNotRegisteredProfile",
                 "derivedNotLoggedInProfile sink(allowSchemaDrift: true,",
                 "     validateSchema: false,",
                 "     deletable:false,",
@@ -236,7 +256,7 @@
                 "     throughput: 50000,",
                 "     skipDuplicateMapInputs: true,",
                 "     skipDuplicateMapOutputs: true,",
-                "     saveOrder: 4) ~> sinkNotLoggedInProfile",
+                "     saveOrder: 2) ~> sinkNotLoggedInProfile",
                 "derivedBannedDomain sink(allowSchemaDrift: true,",
                 "     validateSchema: false,",
                 "     deletable:false,",
@@ -249,7 +269,7 @@
                 "     throughput: 50000,",
                 "     skipDuplicateMapInputs: true,",
                 "     skipDuplicateMapOutputs: true,",
-                "     saveOrder: 5) ~> sinkBannedDomainProfile",
+                "     saveOrder: 3) ~> sinkBannedDomainProfile",
                 "derivedNullEmailProfiles sink(allowSchemaDrift: true,",
                 "     validateSchema: false,",
                 "     deletable:false,",
