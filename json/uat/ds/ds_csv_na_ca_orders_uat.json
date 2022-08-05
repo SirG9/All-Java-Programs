@@ -1,0 +1,37 @@
+{
+  "name": "ds_csv_na_ca_orders_uat",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "ls_ds_datalake_storage_gen2",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/TDATA-4433/uat"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobFSLocation",
+        "fileName": "na-ca-orders-history.csv",
+        "folderPath": "na-ca-orders-history",
+        "fileSystem": "ccore-uat"
+      },
+      "columnDelimiter": ",",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": [
+      {
+        "name": "customerId",
+        "type": "String"
+      },
+      {
+        "name": "email",
+        "type": "String"
+      }
+    ]
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "ds_csv_na_ca_orders_stg",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "ls_ds_blob_storage",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/stg"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobFSLocation",
+        "fileName": "na-ca-orders_fl.gz",
+        "folderPath": "na-profiles",
+        "fileSystem": "ccore-stg"
+      },
+      "columnDelimiter": ",",
+      "compressionCodec": "gzip",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": []
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}
