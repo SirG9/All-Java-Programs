@@ -1,0 +1,37 @@
+{
+  "name": "ds_csv_sto_janrain_profiles_uat",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "ls_ds_datalake_storage_gen2",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/TDATA-4433/uat"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobFSLocation",
+        "fileName": "footlocker-uat-user-merged.csv",
+        "folderPath": "janrain-merged-profiles",
+        "fileSystem": "ccore-uat"
+      },
+      "columnDelimiter": ",",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": [
+      {
+        "name": "customerId",
+        "type": "String"
+      },
+      {
+        "name": "email",
+        "type": "String"
+      }
+    ]
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}

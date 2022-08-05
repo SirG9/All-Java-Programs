@@ -1,0 +1,92 @@
+{
+  "name": "ds_csv_sftp_janrain_profiles_uat",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "ls_d_janrain_file_download",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/TDATA-4433/uat"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "SftpLocation",
+        "fileName": "footlocker-uat-user-merged.csv",
+        "folderPath": "/incoming/UAT/Merged"
+      },
+      "columnDelimiter": ",",
+      "escapeChar": "\\",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": [
+      {
+        "name": "email",
+        "type": "String"
+      },
+      {
+        "name": "lastUpdated",
+        "type": "String"
+      },
+      {
+        "name": "uuid",
+        "type": "String"
+      },
+      {
+        "name": "created",
+        "type": "String"
+      },
+      {
+        "name": "ssoComplete",
+        "type": "String"
+      },
+      {
+        "name": "password.value",
+        "type": "String"
+      },
+      {
+        "name": "password.type",
+        "type": "String"
+      },
+      {
+        "name": "emailVerified",
+        "type": "String"
+      },
+      {
+        "name": "original.entityType",
+        "type": "String"
+      },
+      {
+        "name": "original.attributes",
+        "type": "String"
+      },
+      {
+        "name": "original.filter",
+        "type": "String"
+      },
+      {
+        "name": "original.exportFilePrefix",
+        "type": "String"
+      },
+      {
+        "name": "original.targetSaveLocation",
+        "type": "String"
+      },
+      {
+        "name": "original.targetSaveLocationAccount",
+        "type": "String"
+      },
+      {
+        "name": "original.LastRunDate",
+        "type": "String"
+      },
+      {
+        "name": "original.EntityType",
+        "type": "String"
+      }
+    ]
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}
