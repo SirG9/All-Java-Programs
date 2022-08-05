@@ -1,0 +1,19 @@
+{
+  "name": "ds_cntnr_ca_profiles_retained_stg",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "cms_stage_ca",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/stg"
+    },
+    "annotations": [],
+    "type": "CosmosDbSqlApiCollection",
+    "schema": {},
+    "typeProperties": {
+      "collectionName": "profiles_retained"
+    }
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}

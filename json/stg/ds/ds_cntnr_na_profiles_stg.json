@@ -1,0 +1,19 @@
+{
+  "name": "ds_cntnr_na_profiles_stg",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "cms_stage_na",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/stg"
+    },
+    "annotations": [],
+    "type": "CosmosDbSqlApiCollection",
+    "schema": {},
+    "typeProperties": {
+      "collectionName": "profiles"
+    }
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}

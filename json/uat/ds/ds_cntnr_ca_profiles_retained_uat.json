@@ -1,0 +1,19 @@
+{
+  "name": "ds_cntnr_ca_profiles_retained_uat",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "ls_db_cosmos_ccore_ca_uat",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/TDATA-4433/uat"
+    },
+    "annotations": [],
+    "type": "CosmosDbSqlApiCollection",
+    "schema": {},
+    "typeProperties": {
+      "collectionName": "profiles_retained"
+    }
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}

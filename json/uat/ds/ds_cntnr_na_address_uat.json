@@ -1,0 +1,89 @@
+{
+  "name": "ds_cntnr_na_address_uat",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "ls_db_cosmos_ccore_na_uat",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/TDATA-4433/uat"
+    },
+    "annotations": [],
+    "type": "CosmosDbSqlApiCollection",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "zipCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "addressType": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "defaultBilling": {
+          "type": "boolean"
+        },
+        "stateName": {
+          "type": "string"
+        },
+        "customerId": {
+          "type": "string"
+        },
+        "linkAddressId": {
+          "type": "integer"
+        },
+        "addressLine1": {
+          "type": "string"
+        },
+        "addressLine2": {
+          "type": "string"
+        },
+        "addressLine3": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "countryName": {
+          "type": "string"
+        },
+        "updateTs": {
+          "type": "integer"
+        },
+        "email": {
+          "type": "string"
+        },
+        "defaultShipping": {
+          "type": "boolean"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "isFPO": {
+          "type": "boolean"
+        },
+        "regionFPO": {
+          "type": "string"
+        }
+      }
+    },
+    "typeProperties": {
+      "collectionName": "address"
+    }
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}

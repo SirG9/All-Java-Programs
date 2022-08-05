@@ -1,0 +1,68 @@
+{
+  "name": "pl_profiles_migration_uat",
+  "properties": {
+    "activities": [
+      {
+        "name": "Profiles Migration",
+        "type": "ExecuteDataFlow",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "dataflow": {
+            "referenceName": "df_profiles_migration_uat",
+            "type": "DataFlowReference"
+          },
+          "integrationRuntime": {
+            "referenceName": "Azure-Secured-Integration-Runtime",
+            "type": "IntegrationRuntimeReference"
+          },
+          "traceLevel": "Fine"
+        }
+      },
+      {
+        "name": "Address Migration",
+        "type": "ExecuteDataFlow",
+        "dependsOn": [
+          {
+            "activity": "Profiles Migration",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "dataflow": {
+            "referenceName": "df_address_migration_uat",
+            "type": "DataFlowReference"
+          },
+          "integrationRuntime": {
+            "referenceName": "Azure-Secured-Integration-Runtime",
+            "type": "IntegrationRuntimeReference"
+          },
+          "traceLevel": "Fine"
+        }
+      }
+    ],
+    "folder": {
+      "name": "ccore/TDATA-4433/uat"
+    },
+    "annotations": [],
+    "lastPublishTime": "2022-08-05T05:27:31Z"
+  },
+  "type": "Microsoft.DataFactory/factories/pipelines"
+}
