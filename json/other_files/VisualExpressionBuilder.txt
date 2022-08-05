@@ -1,0 +1,4 @@
+How to read result from Cache Sink?
+-----------------------------------
+cacheSinkOrderHistoryEmails#outputs()[1].orderHistoryEmailList
+
