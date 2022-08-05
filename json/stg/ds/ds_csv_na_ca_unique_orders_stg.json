@@ -1,5 +1,5 @@
 {
-  "name": "ds_csv_na_ca_orders_stg",
+  "name": "ds_csv_na_ca_unique_orders_stg",
   "properties": {
     "linkedServiceName": {
       "referenceName": "ls_ds_blob_storage",
@@ -13,7 +13,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobFSLocation",
-        "fileName": "na-ca-orders-history.csv",
+        "fileName": "na-ca-orders-history-unique-emails.csv",
         "folderPath": "na-ca-orders-history",
         "fileSystem": "ccore-stg"
       },
