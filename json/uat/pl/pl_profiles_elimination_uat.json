@@ -1,0 +1,75 @@
+{
+  "name": "pl_profiles_elimination_uat",
+  "properties": {
+    "activities": [
+      {
+        "name": "Na Profiles Elimination",
+        "type": "ExecuteDataFlow",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "1.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "dataflow": {
+            "referenceName": "df_na_profiles_elimination_uat",
+            "type": "DataFlowReference",
+            "parameters": {
+              "bannedDomainPara": "\"Email belongs to restricted domain\"",
+              "loginPara": "\"Not logged in since 1 year\"",
+              "createdPara": "\"Email not verified and profile created date is more than 1 year\"",
+              "isRegisteredPara": "\"Profile is not registered and created date is more than 1 year\"",
+              "nullEmails": "\"Email address is null, invalid profile\""
+            }
+          },
+          "integrationRuntime": {
+            "referenceName": "Azure-Secured-Integration-Runtime",
+            "type": "IntegrationRuntimeReference"
+          },
+          "traceLevel": "Fine"
+        }
+      },
+      {
+        "name": "Ca Profiles Elimination",
+        "type": "ExecuteDataFlow",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "1.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "dataflow": {
+            "referenceName": "df_ca_profiles_elimination_uat",
+            "type": "DataFlowReference",
+            "parameters": {
+              "bannedDomainPara": "\"Email belongs to restricted domain\"",
+              "loginPara": "\"Not logged in since 1 year\"",
+              "createdPara": "\"Email not verified and profile created date is more than 1 year\"",
+              "isRegisteredPara": "\"Profile is not registered and created date is more than 1 year\"",
+              "nullEmails": "\"Email address is null, invalid profile\""
+            }
+          },
+          "integrationRuntime": {
+            "referenceName": "Azure-Secured-Integration-Runtime",
+            "type": "IntegrationRuntimeReference"
+          },
+          "traceLevel": "Fine"
+        }
+      }
+    ],
+    "folder": {
+      "name": "ccore/TDATA-4433/uat"
+    },
+    "annotations": [],
+    "lastPublishTime": "2022-08-04T07:30:57Z"
+  },
+  "type": "Microsoft.DataFactory/factories/pipelines"
+}
