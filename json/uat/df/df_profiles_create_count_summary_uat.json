@@ -1,0 +1,379 @@
+{
+  "name": "df_profiles_create_count_summary_uat",
+  "properties": {
+    "folder": {
+      "name": "ccore/TDATA-4391/uat/container"
+    },
+    "type": "MappingDataFlow",
+    "typeProperties": {
+      "sources": [
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_profiles_count_uat",
+            "type": "DatasetReference"
+          },
+          "name": "EliminationList"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_na_profile_uat",
+            "type": "DatasetReference"
+          },
+          "name": "RandomSource"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_na_profile_uat",
+            "type": "DatasetReference"
+          },
+          "name": "NaProfiles"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_ca_profile_uat",
+            "type": "DatasetReference"
+          },
+          "name": "CaProfiles"
+        }
+      ],
+      "sinks": [
+        {
+          "name": "CacheSinkTotalNaEliminatedProfiles"
+        },
+        {
+          "name": "CacheSinkTotalCaEliminatedProfiles"
+        },
+        {
+          "name": "CacheSinkTotalNaProfiles"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_profiles_count_summary_uat",
+            "type": "DatasetReference"
+          },
+          "name": "sinkCountSummary"
+        },
+        {
+          "name": "CacheSinkTotalCaProfiles"
+        },
+        {
+          "name": "CacheSinkNaRetainedProfiles"
+        },
+        {
+          "name": "CacheSinkCaRetainedProfiles"
+        },
+        {
+          "name": "CacheSinkCommonProfiles"
+        }
+      ],
+      "transformations": [
+        {
+          "name": "split1"
+        },
+        {
+          "name": "CountNaEliminatedProfiles"
+        },
+        {
+          "name": "CountCaEliminatedProfiles"
+        },
+        {
+          "name": "derivedCountColumns"
+        },
+        {
+          "name": "CountNaProfiles"
+        },
+        {
+          "name": "CountCaProfiles"
+        },
+        {
+          "name": "NaRetainedProfiles"
+        },
+        {
+          "name": "CountNaRetainedProfiles"
+        },
+        {
+          "name": "CaRetainedProfiles"
+        },
+        {
+          "name": "CountCaRetainedProfiles"
+        },
+        {
+          "name": "CommonProfiles"
+        },
+        {
+          "name": "CountCommonProfiles"
+        },
+        {
+          "name": "selectNaRetainedEmails"
+        },
+        {
+          "name": "selectCaRetainedEmails"
+        }
+      ],
+      "scriptLines": [
+        "parameters{",
+        "     eliNa as string (\"Eliminated NA Profile\")",
+        "}",
+        "source(output(",
+        "          eliminationReason as string,",
+        "          customerId as string,",
+        "          profileBelongsTo as string,",
+        "          email as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     format: 'document') ~> EliminationList",
+        "source(output(",
+        "          email as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     limit: 1,",
+        "     query: 'select c.email from c',",
+        "     format: 'documentQuery',",
+        "     systemColumns: false) ~> RandomSource",
+        "source(output(",
+        "          updateTs as integer,",
+        "          firstName as string,",
+        "          lastName as string,",
+        "          email as string,",
+        "          profileStatus as string,",
+        "          token as string,",
+        "          emailHistory as string[],",
+        "          customerId as string,",
+        "          preferredStores as (FL as (storeId as string, division as string, name as string, phone as string, line1 as string, line2 as string, city as string, state as string, country as string, zipcode as string, isocodeShort as string, latitude as double, longitude as double, status as string), FA as (storeId as string, division as string, name as string, phone as string, line1 as string, line2 as string, city as string, state as string, country as string, zipcode as string, isocodeShort as string, latitude as double, longitude as double, status as string), CS as (storeId as string, division as string, name as string, phone as string, line1 as string, line2 as string, city as string, state as string, country as string, zipcode as string, isocodeShort as string, latitude as double, longitude as double, status as string), KFL as (storeId as string, division as string, name as string, phone as string, line1 as string, line2 as string, city as string, state as string, country as string, zipcode as string, isocodeShort as string)),",
+        "          mobileNumber as string,",
+        "          homeNumber as string,",
+        "          isRegistered as boolean,",
+        "          zipCode as string,",
+        "          schDefaultBillingAddressLine1 as string,",
+        "          schDefaultShippingAddressLine1 as string,",
+        "          region as string,",
+        "          webhookMessageStatus as string,",
+        "          janrainUuid as string,",
+        "          oldFlCid as string,",
+        "          oldKflCid as string,",
+        "          oldLflCid as string,",
+        "          oldFsCid as string,",
+        "          oldFaCid as string,",
+        "          oldCsCid as string,",
+        "          oldFlcaCid as string,",
+        "          oldEbCid as string,",
+        "          fraudFlag as string,",
+        "          bannerOfOrigin as string,",
+        "          emailVerified as integer,",
+        "          militaryStatus as string,",
+        "          militaryRequestId as string,",
+        "          militaryExpiryDate as string,",
+        "          storeNumber as string,",
+        "          previousEmail as string,",
+        "          password as string,",
+        "          flxInfo as (flxEmailOptIn as boolean, loyaltyFlxEmailOptInBanner as string, loyaltyStatus as boolean, points as integer, tier as string, flxNumber as integer, ctNumber as integer, flxTcVersion as string, referralCode as string),",
+        "          optIns as string[],",
+        "          created as integer,",
+        "          birthday as string,",
+        "          inStoreSignUp as boolean,",
+        "          createdBy as string,",
+        "          xstoreId as string,",
+        "          retailStoreId as string,",
+        "          relateFailure as boolean,",
+        "          changedFields as string,",
+        "          csaInfo as string,",
+        "          customerFlag as string,",
+        "          event as string,",
+        "          changedBy as string,",
+        "          vipInfo as string,",
+        "          preferredLanguage as string,",
+        "          lastLogin as string,",
+        "          lastFailedLogin as string,",
+        "          passwordChangeDate as string,",
+        "          failedLoginAttempts as integer,",
+        "          streetAddress as string,",
+        "          country as string,",
+        "          gender as string,",
+        "          customerSyncStatus as string,",
+        "          updateTsExceptLogin as integer,",
+        "          relateCustomerId as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     format: 'document',",
+        "     systemColumns: true) ~> NaProfiles",
+        "source(output(",
+        "          updateTs as integer,",
+        "          firstName as string,",
+        "          lastName as string,",
+        "          email as string,",
+        "          profileStatus as string,",
+        "          token as string,",
+        "          emailHistory as string,",
+        "          customerId as string,",
+        "          preferredStores as string,",
+        "          mobileNumber as integer,",
+        "          homeNumber as string,",
+        "          isRegistered as boolean,",
+        "          zipCode as string,",
+        "          schDefaultBillingAddressLine1 as string,",
+        "          schDefaultShippingAddressLine1 as string,",
+        "          region as string,",
+        "          webhookMessageStatus as string,",
+        "          janrainUuid as string,",
+        "          oldFlCid as string,",
+        "          oldKflCid as string,",
+        "          oldLflCid as string,",
+        "          oldFsCid as string,",
+        "          oldFaCid as string,",
+        "          oldCsCid as string,",
+        "          oldFlcaCid as string,",
+        "          oldEbCid as string,",
+        "          fraudFlag as string[],",
+        "          bannerOfOrigin as string,",
+        "          emailVerified as integer,",
+        "          militaryStatus as string,",
+        "          militaryRequestId as string,",
+        "          militaryExpiryDate as string,",
+        "          storeNumber as string,",
+        "          previousEmail as string,",
+        "          password as string,",
+        "          flxInfo as string,",
+        "          optIns as (banner as string)[],",
+        "          created as integer,",
+        "          birthday as string,",
+        "          inStoreSignUp as boolean,",
+        "          createdBy as string,",
+        "          xstoreId as string,",
+        "          retailStoreId as string,",
+        "          relateFailure as string,",
+        "          changedFields as string,",
+        "          csaInfo as string,",
+        "          customerFlag as string,",
+        "          event as string,",
+        "          changedBy as string,",
+        "          vipInfo as (vipNumber as string, status as string, isVip as boolean, lifeTimePoints as integer, lastLevelMoveDate as integer, lastLevelUpdateDateHyb as integer, loyaltyExpireDate as integer, dollarsSpent as (currencyIso as string, formattedValue as string, value as integer), dollarsNeedToSpend as string, loyaltyMinThreshold as string, loyaltyTargetThreshold as (currencyIso as string, formattedValue as string, value as integer)),",
+        "          preferredLanguage as string,",
+        "          lastLogin as string,",
+        "          lastFailedLogin as string,",
+        "          passwordChangeDate as string,",
+        "          failedLoginAttempts as integer,",
+        "          streetAddress as string,",
+        "          country as string,",
+        "          gender as string,",
+        "          customerSyncStatus as string,",
+        "          updateTsExceptLogin as integer,",
+        "          relateCustomerId as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     format: 'document',",
+        "     systemColumns: true) ~> CaProfiles",
+        "EliminationList split(equals(profileBelongsTo,  $eliNa),",
+        "     disjoint: false) ~> split1@(NaEliminatedProfiles, CaEliminatedProfiles)",
+        "split1@NaEliminatedProfiles aggregate(result = count(eliminationReason)) ~> CountNaEliminatedProfiles",
+        "split1@CaEliminatedProfiles aggregate(result = count(eliminationReason)) ~> CountCaEliminatedProfiles",
+        "RandomSource derive(NaProfiles = CacheSinkTotalNaProfiles#outputs()[1].result,",
+        "          CaProfiles = CacheSinkTotalCaProfiles#outputs()[1].result,",
+        "          NaEliminatedProfiles = CacheSinkTotalNaEliminatedProfiles#outputs()[1].result,",
+        "          CaEliminatedProfiles = CacheSinkTotalCaEliminatedProfiles#outputs()[1].result,",
+        "          NaRetainedProfiles = CacheSinkNaRetainedProfiles#outputs()[1].result,",
+        "          CaRetainedProfiles = CacheSinkCaRetainedProfiles#outputs()[1].result,",
+        "          CommonProfiles = CacheSinkCommonProfiles#outputs()[1].result,",
+        "          GlobalProfiles = minus(add(CacheSinkNaRetainedProfiles#outputs()[1].result, CacheSinkCaRetainedProfiles#outputs()[1].result),CacheSinkCommonProfiles#outputs()[1].result)) ~> derivedCountColumns",
+        "NaProfiles aggregate(result = count(id)) ~> CountNaProfiles",
+        "CaProfiles aggregate(result = count(id)) ~> CountCaProfiles",
+        "NaProfiles, split1@NaEliminatedProfiles exists(NaProfiles@email == split1@NaEliminatedProfiles@email,",
+        "     negate:true,",
+        "     broadcast: 'auto')~> NaRetainedProfiles",
+        "selectNaRetainedEmails aggregate(result = count(email)) ~> CountNaRetainedProfiles",
+        "CaProfiles, split1@CaEliminatedProfiles exists(CaProfiles@email == split1@CaEliminatedProfiles@email,",
+        "     negate:true,",
+        "     broadcast: 'auto')~> CaRetainedProfiles",
+        "selectCaRetainedEmails aggregate(result = count(email)) ~> CountCaRetainedProfiles",
+        "selectNaRetainedEmails, selectCaRetainedEmails join(selectNaRetainedEmails@email == selectCaRetainedEmails@email,",
+        "     joinType:'inner',",
+        "     matchType:'exact',",
+        "     ignoreSpaces: false,",
+        "     broadcast: 'auto')~> CommonProfiles",
+        "CommonProfiles aggregate(result = count(selectNaRetainedEmails@email)) ~> CountCommonProfiles",
+        "NaRetainedProfiles select(mapColumn(",
+        "          email",
+        "     ),",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true) ~> selectNaRetainedEmails",
+        "CaRetainedProfiles select(mapColumn(",
+        "          email",
+        "     ),",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true) ~> selectCaRetainedEmails",
+        "CountNaEliminatedProfiles sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 2) ~> CacheSinkTotalNaEliminatedProfiles",
+        "CountCaEliminatedProfiles sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 2) ~> CacheSinkTotalCaEliminatedProfiles",
+        "CountNaProfiles sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 1) ~> CacheSinkTotalNaProfiles",
+        "derivedCountColumns sink(allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     input(",
+        "          eliminationReason as string,",
+        "          customerId as string,",
+        "          profileBelongsTo as string,",
+        "          email as string",
+        "     ),",
+        "     deletable:false,",
+        "     insertable:true,",
+        "     updateable:false,",
+        "     upsertable:false,",
+        "     recreate:true,",
+        "     format: 'document',",
+        "     batchSize: 5000,",
+        "     partitionKey: ['/id'],",
+        "     throughput: 10000,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     saveOrder: 5) ~> sinkCountSummary",
+        "CountCaProfiles sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 1) ~> CacheSinkTotalCaProfiles",
+        "CountNaRetainedProfiles sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 3) ~> CacheSinkNaRetainedProfiles",
+        "CountCaRetainedProfiles sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 3) ~> CacheSinkCaRetainedProfiles",
+        "CountCommonProfiles sink(validateSchema: false,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     store: 'cache',",
+        "     format: 'inline',",
+        "     output: false,",
+        "     saveOrder: 4) ~> CacheSinkCommonProfiles"
+      ]
+    }
+  }
+}
