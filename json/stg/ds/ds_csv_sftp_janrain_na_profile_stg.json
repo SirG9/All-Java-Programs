@@ -1,0 +1,56 @@
+{
+  "name": "ds_csv_sftp_janrain_na_profile_stg",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "ls_janrain_sftp",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/stg"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "SftpLocation",
+        "fileName": "footlocker_dev_user_20220725T214353.csv",
+        "folderPath": "/incoming/Staging/US"
+      },
+      "columnDelimiter": ",",
+      "escapeChar": "\"",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": [
+      {
+        "name": "email",
+        "type": "String"
+      },
+      {
+        "name": "lastUpdated",
+        "type": "String"
+      },
+      {
+        "name": "uuid",
+        "type": "String"
+      },
+      {
+        "name": "created",
+        "type": "String"
+      },
+      {
+        "name": "ssoComplete",
+        "type": "String"
+      },
+      {
+        "name": "emailVerified",
+        "type": "String"
+      },
+      {
+        "name": "password",
+        "type": "String"
+      }
+    ]
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}

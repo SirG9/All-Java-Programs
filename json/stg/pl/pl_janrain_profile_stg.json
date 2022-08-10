@@ -1,0 +1,104 @@
+{
+  "name": "pl_janrain_profile_stg",
+  "properties": {
+    "activities": [
+      {
+        "name": "df_janrain_filter_stg",
+        "type": "ExecuteDataFlow",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "1.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "dataflow": {
+            "referenceName": "df_janrain_filter_stg",
+            "type": "DataFlowReference"
+          },
+          "integrationRuntime": {
+            "referenceName": "Azure-DataFlow-IR",
+            "type": "IntegrationRuntimeReference"
+          },
+          "traceLevel": "Fine"
+        }
+      },
+      {
+        "name": "Copy Storage CSV to SFTP location",
+        "type": "Copy",
+        "dependsOn": [
+          {
+            "activity": "df_janrain_filter_stg",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "7.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "storeSettings": {
+              "type": "AzureBlobFSReadSettings",
+              "recursive": true,
+              "enablePartitionDiscovery": false
+            },
+            "formatSettings": {
+              "type": "DelimitedTextReadSettings"
+            }
+          },
+          "sink": {
+            "type": "DelimitedTextSink",
+            "storeSettings": {
+              "type": "SftpWriteSettings",
+              "operationTimeout": "01:00:00",
+              "useTempFileRename": true
+            },
+            "formatSettings": {
+              "type": "DelimitedTextWriteSettings",
+              "quoteAllText": true,
+              "fileExtension": ".txt"
+            }
+          },
+          "enableStaging": false,
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          }
+        },
+        "inputs": [
+          {
+            "referenceName": "ds_csv_sto_janrain_profiles_stg",
+            "type": "DatasetReference"
+          }
+        ],
+        "outputs": [
+          {
+            "referenceName": "ds_csv_sftp_janrain_profiles_stg",
+            "type": "DatasetReference"
+          }
+        ]
+      }
+    ],
+    "folder": {
+      "name": "ccore_merge/stg"
+    },
+    "annotations": [],
+    "lastPublishTime": "2022-08-09T17:09:45Z"
+  },
+  "type": "Microsoft.DataFactory/factories/pipelines"
+}

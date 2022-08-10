@@ -1,0 +1,37 @@
+{
+  "name": "ds_csv_sto_janrain_ca_profiles_stg",
+  "properties": {
+    "linkedServiceName": {
+      "referenceName": "ls_ds_blob_storage",
+      "type": "LinkedServiceReference"
+    },
+    "folder": {
+      "name": "ccore/stg"
+    },
+    "annotations": [],
+    "type": "DelimitedText",
+    "typeProperties": {
+      "location": {
+        "type": "AzureBlobFSLocation",
+        "fileName": "footlocker-uat-janrain-ca-user.csv",
+        "folderPath": "janrain-profiles",
+        "fileSystem": "ccore-stg"
+      },
+      "columnDelimiter": ",",
+      "escapeChar": "\"",
+      "firstRowAsHeader": true,
+      "quoteChar": "\""
+    },
+    "schema": [
+      {
+        "name": "customerId",
+        "type": "String"
+      },
+      {
+        "name": "email",
+        "type": "String"
+      }
+    ]
+  },
+  "type": "Microsoft.DataFactory/factories/datasets"
+}

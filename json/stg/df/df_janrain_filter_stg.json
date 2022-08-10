@@ -1,0 +1,170 @@
+{
+  "name": "df_janrain_filter_stg",
+  "properties": {
+    "folder": {
+      "name": "ccore/TDATA-4433/stg"
+    },
+    "type": "MappingDataFlow",
+    "typeProperties": {
+      "sources": [
+        {
+          "dataset": {
+            "referenceName": "ds_csv_sto_janrain_na_profiles_stg",
+            "type": "DatasetReference"
+          },
+          "name": "JanrainNaProfile"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_na_profiles_stg",
+            "type": "DatasetReference"
+          },
+          "name": "GlobalProfile"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_csv_sto_janrain_ca_profiles_stg",
+            "type": "DatasetReference"
+          },
+          "name": "JanrainCaProfile"
+        }
+      ],
+      "sinks": [
+        {
+          "dataset": {
+            "referenceName": "ds_csv_sto_janrain_profiles_stg",
+            "type": "DatasetReference"
+          },
+          "name": "SinkJanrainNaProfiles"
+        }
+      ],
+      "transformations": [
+        {
+          "name": "JanrainNaProfileExistsInGlobalProfile"
+        },
+        {
+          "name": "JanrainCaProfileExistsInGlobalProfile"
+        },
+        {
+          "name": "JanrainUniqueCaProfiles"
+        },
+        {
+          "name": "JanrainNaUnionCaProfiles"
+        }
+      ],
+      "scriptLines": [
+        "source(output(",
+        "          email as string,",
+        "          lastUpdated as string,",
+        "          uuid as string,",
+        "          created as string,",
+        "          ssoComplete as boolean,",
+        "          emailVerified as string,",
+        "          password as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     ignoreNoFilesFound: false) ~> JanrainNaProfile",
+        "source(output(",
+        "          bannerOfOrigin as string,",
+        "          birthday as date,",
+        "          changedBy as string,",
+        "          changedFields as string,",
+        "          country as string,",
+        "          created as long,",
+        "          createdBy as string,",
+        "          csaInfo as (csaAgentEmail as string, zendeskTicketNumber as string),",
+        "          customerFlag as string,",
+        "          customerId as string,",
+        "          email as string,",
+        "          emailHistory as (emailAddress as string, modificationTS as string)[],",
+        "          emailVerified as long,",
+        "          event as string,",
+        "          failedLoginAttempts as integer,",
+        "          firstName as string,",
+        "          flxInfo as (ctNumber as integer, flxEmailOptIn as boolean, flxNumber as integer, flxTcVersion as string, loyaltyFlxEmailOptInBanner as string, loyaltyStatus as boolean, points as integer, referralCode as string, tier as string),",
+        "          fraudFlag as string[],",
+        "          gender as string,",
+        "          homeNumber as long,",
+        "          inStoreSignUp as boolean,",
+        "          isRegistered as boolean,",
+        "          janrainUuid as string,",
+        "          lastFailedLogin as string,",
+        "          lastLogin as string,",
+        "          lastName as string,",
+        "          militaryExpiryDate as string,",
+        "          militaryRequestId as string,",
+        "          militaryStatus as string,",
+        "          mobileNumber as long,",
+        "          oldCsCid as string,",
+        "          oldEbCid as string,",
+        "          oldFaCid as string,",
+        "          oldFlCid as string,",
+        "          oldFlcaCid as string,",
+        "          oldFsCid as string,",
+        "          oldKflCid as string,",
+        "          oldLflCid as string,",
+        "          optIns as (banner as string)[],",
+        "          password as string,",
+        "          passwordChangeDate as string,",
+        "          preferredLanguage as string,",
+        "          preferredStores as (CS as (city as string, country as string, division as short, isocodeShort as string, latitude as double, line1 as string, line2 as string, longitude as double, name as string, phone as string, state as string, status as string, storeId as integer, zipcode as integer), FA as (city as string, country as string, division as short, isocodeShort as string, latitude as double, line1 as string, line2 as string, longitude as double, name as string, phone as string, state as string, status as string, storeId as integer, zipcode as integer), FL as (city as string, country as string, division as short, isocodeShort as string, latitude as double, line1 as string, line2 as string, longitude as double, name as string, phone as string, state as string, status as string, storeId as integer, zipcode as integer), KFL as (city as string, country as string, division as short, isocodeShort as string, latitude as double, line1 as string, line2 as string, longitude as double, name as string, phone as string, state as string, status as string, storeId as integer, zipcode as integer), LFL as (city as string, zipcode as integer, name as string, state as string, storeId as short, country as string, isocodeShort as string, division as short, line1 as string, line2 as string, phone as string)),",
+        "          previousEmail as string,",
+        "          profileStatus as string,",
+        "          relateCustomerId as integer,",
+        "          relateFailure as boolean,",
+        "          retailStoreId as integer,",
+        "          schDefaultBillingAddressLine1 as string,",
+        "          schDefaultShippingAddressLine1 as string,",
+        "          storeNumber as string,",
+        "          token as string,",
+        "          updateTs as long,",
+        "          updateTsExceptLogin as long,",
+        "          vipInfo as (dollarsNeedToSpend as (currencyIso as string, formattedValue as string, value as short), dollarsSpent as (currencyIso as string, formattedValue as string, value as boolean), isVip as boolean, lastLevelMoveDate as long, lastLevelUpdateDateHyb as long, lifeTimePoints as integer, loyaltyExpireDate as long, loyaltyMinThreshold as (currencyIso as string, formattedValue as string, value as integer), loyaltyTargetThreshold as (currencyIso as string, formattedValue as string, value as short), status as string, vipNumber as string),",
+        "          webhookMessageStatus as string,",
+        "          xstoreId as string,",
+        "          zipCode as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     format: 'document') ~> GlobalProfile",
+        "source(output(",
+        "          email as string,",
+        "          lastUpdated as string,",
+        "          uuid as string,",
+        "          created as string,",
+        "          ssoComplete as boolean,",
+        "          password as string,",
+        "          emailVerified as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     ignoreNoFilesFound: false) ~> JanrainCaProfile",
+        "JanrainNaProfile, GlobalProfile exists(JanrainNaProfile@email == GlobalProfile@email,",
+        "     negate:false,",
+        "     broadcast: 'auto')~> JanrainNaProfileExistsInGlobalProfile",
+        "JanrainCaProfile, GlobalProfile exists(JanrainCaProfile@email == GlobalProfile@email,",
+        "     negate:false,",
+        "     broadcast: 'auto')~> JanrainCaProfileExistsInGlobalProfile",
+        "JanrainCaProfileExistsInGlobalProfile, JanrainNaProfileExistsInGlobalProfile exists(JanrainCaProfile@email == JanrainNaProfile@email,",
+        "     negate:true,",
+        "     broadcast: 'auto')~> JanrainUniqueCaProfiles",
+        "JanrainNaProfileExistsInGlobalProfile, JanrainUniqueCaProfiles union(byName: true)~> JanrainNaUnionCaProfiles",
+        "JanrainNaUnionCaProfiles sink(allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     input(",
+        "          customerId as string,",
+        "          email as string",
+        "     ),",
+        "     partitionFileNames:['footlocker-stg-user-merged.csv'],",
+        "     umask: 0022,",
+        "     preCommands: [],",
+        "     postCommands: [],",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     saveOrder: 0,",
+        "     partitionBy('hash', 1)) ~> SinkJanrainNaProfiles"
+      ]
+    }
+  }
+}
