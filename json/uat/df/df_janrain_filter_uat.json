@@ -9,7 +9,7 @@
       "sources": [
         {
           "dataset": {
-            "referenceName": "ds_csv_janrain_na_profile_uat",
+            "referenceName": "ds_csv_sto_janrain_na_profiles_uat",
             "type": "DatasetReference"
           },
           "name": "JanrainNaProfile"
@@ -23,7 +23,7 @@
         },
         {
           "dataset": {
-            "referenceName": "ds_csv_janrain_ca_profile_uat",
+            "referenceName": "ds_csv_sto_janrain_ca_profiles_uat",
             "type": "DatasetReference"
           },
           "name": "JanrainCaProfile"
@@ -58,7 +58,7 @@
         "          lastUpdated as string,",
         "          uuid as string,",
         "          created as string,",
-        "          ssoComplete as string,",
+        "          ssoComplete as boolean,",
         "          emailVerified as string,",
         "          password as string",
         "     ),",
@@ -133,7 +133,7 @@
         "          lastUpdated as string,",
         "          uuid as string,",
         "          created as string,",
-        "          ssoComplete as string,",
+        "          ssoComplete as boolean,",
         "          password as string,",
         "          emailVerified as string",
         "     ),",
@@ -162,7 +162,7 @@
         "     postCommands: [],",
         "     skipDuplicateMapInputs: true,",
         "     skipDuplicateMapOutputs: true,",
-        "     saveOrder: 1,",
+        "     saveOrder: 0,",
         "     partitionBy('hash', 1)) ~> SinkJanrainNaProfiles"
       ]
     }
