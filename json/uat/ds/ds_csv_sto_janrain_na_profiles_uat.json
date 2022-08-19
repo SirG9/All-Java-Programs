@@ -1,5 +1,5 @@
 {
-  "name": "ds_csv_sto_janrain_profiles_uat",
+  "name": "ds_csv_sto_janrain_na_profiles_uat",
   "properties": {
     "linkedServiceName": {
       "referenceName": "ls_ds_datalake_storage_gen2",
@@ -13,7 +13,7 @@
     "typeProperties": {
       "location": {
         "type": "AzureBlobFSLocation",
-        "fileName": "footlocker-uat-user-merged.csv",
+        "fileName": "footlocker-uat-janrain-na-user.csv",
         "folderPath": "janrain-profiles",
         "fileSystem": "ccore-uat"
       },

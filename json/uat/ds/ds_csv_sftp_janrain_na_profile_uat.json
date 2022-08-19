@@ -1,5 +1,5 @@
 {
-  "name": "ds_csv_sftp_janrain_profiles_uat",
+  "name": "ds_csv_sftp_janrain_na_profile_uat",
   "properties": {
     "linkedServiceName": {
       "referenceName": "ls_d_janrain_file_download",
@@ -13,8 +13,8 @@
     "typeProperties": {
       "location": {
         "type": "SftpLocation",
-        "fileName": "footlocker-uat-user-merged.csv",
-        "folderPath": "/incoming/UAT/Merged"
+        "fileName": "footlocker_dev_x_user_uat_001_20220809T155924.csv",
+        "folderPath": "/incoming/UAT/US"
       },
       "columnDelimiter": ",",
       "escapeChar": "\"",

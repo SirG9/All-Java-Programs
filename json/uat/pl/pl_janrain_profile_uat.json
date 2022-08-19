@@ -98,7 +98,7 @@
       "name": "ccore/TDATA-4433/uat"
     },
     "annotations": [],
-    "lastPublishTime": "2022-08-05T09:56:02Z"
+    "lastPublishTime": "2022-08-10T08:28:04Z"
   },
   "type": "Microsoft.DataFactory/factories/pipelines"
 }
