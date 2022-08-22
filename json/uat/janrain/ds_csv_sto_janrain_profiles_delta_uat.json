@@ -1,20 +1,20 @@
 {
-  "name": "ds_csv_sto_janrain_profiles_uat",
+  "name": "ds_csv_sto_janrain_profiles_delta_uat",
   "properties": {
     "linkedServiceName": {
       "referenceName": "ls_ds_datalake_storage_gen2",
       "type": "LinkedServiceReference"
     },
     "folder": {
-      "name": "ccore/TDATA-4433/uat"
+      "name": "ccore/TDATA-4433/uat/Delta"
     },
     "annotations": [],
     "type": "DelimitedText",
     "typeProperties": {
       "location": {
         "type": "AzureBlobFSLocation",
-        "fileName": "footlocker-uat-user-merged.csv",
-        "folderPath": "janrain-profiles",
+        "fileName": "footlocker-uat-delta-user-merged.csv",
+        "folderPath": "janrain-merged-profiles",
         "fileSystem": "ccore-uat"
       },
       "columnDelimiter": ",",
@@ -24,31 +24,11 @@
     },
     "schema": [
       {
+        "name": "customerId",
+        "type": "String"
+      },
+      {
         "name": "email",
-        "type": "String"
-      },
-      {
-        "name": "lastUpdated",
-        "type": "String"
-      },
-      {
-        "name": "uuid",
-        "type": "String"
-      },
-      {
-        "name": "created",
-        "type": "String"
-      },
-      {
-        "name": "ssoComplete",
-        "type": "String"
-      },
-      {
-        "name": "emailVerified",
-        "type": "String"
-      },
-      {
-        "name": "password",
         "type": "String"
       }
     ]

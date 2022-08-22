@@ -24,11 +24,31 @@
     },
     "schema": [
       {
-        "name": "customerId",
+        "name": "email",
         "type": "String"
       },
       {
-        "name": "email",
+        "name": "lastUpdated",
+        "type": "String"
+      },
+      {
+        "name": "uuid",
+        "type": "String"
+      },
+      {
+        "name": "created",
+        "type": "String"
+      },
+      {
+        "name": "ssoComplete",
+        "type": "String"
+      },
+      {
+        "name": "password",
+        "type": "String"
+      },
+      {
+        "name": "emailVerified",
         "type": "String"
       }
     ]
