@@ -572,7 +572,7 @@
                 "     insertable:true,",
                 "     updateable:false,",
                 "     upsertable:false,",
-                "     recreate:true,",
+                "     recreate:false,",
                 "     format: 'document',",
                 "     batchSize: 25000,",
                 "     partitionKey: ['/id'],",
