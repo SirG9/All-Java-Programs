@@ -13,53 +13,74 @@
     "schema": {
       "type": "object",
       "properties": {
-        "zipCode": {
-          "type": "string"
-        },
-        "country": {
-          "type": "string"
-        },
-        "city": {
-          "type": "string"
-        },
-        "addressType": {
-          "type": "string"
-        },
-        "fullName": {
-          "type": "string"
-        },
-        "defaultBilling": {
-          "type": "boolean"
-        },
-        "stateName": {
-          "type": "string"
-        },
-        "customerId": {
-          "type": "string"
-        },
-        "linkAddressId": {
-          "type": "long"
-        },
         "addressLine1": {
           "type": "string"
         },
         "addressLine2": {
           "type": "string"
         },
-        "state": {
+        "addressLine3": {
+          "type": "string"
+        },
+        "addressType": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
           "type": "string"
         },
         "countryName": {
           "type": "string"
         },
-        "updateTs": {
-          "type": "long"
+        "customerId": {
+          "type": "string"
+        },
+        "defaultBilling": {
+          "type": "boolean"
+        },
+        "defaultShipping": {
+          "type": "boolean"
         },
         "email": {
           "type": "string"
         },
-        "defaultShipping": {
+        "firstName": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "isFPO": {
           "type": "boolean"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "linkAddressId": {
+          "type": "long"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "regionFPO": {
+          "type": "string"
+        },
+        "satoriValidated": {
+          "type": "boolean"
+        },
+        "state": {
+          "type": "string"
+        },
+        "stateName": {
+          "type": "string"
+        },
+        "updateTs": {
+          "type": "long"
+        },
+        "zipCode": {
+          "type": "string"
         }
       }
     },

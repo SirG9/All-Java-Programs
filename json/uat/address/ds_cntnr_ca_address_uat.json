@@ -13,12 +13,6 @@
     "schema": {
       "type": "object",
       "properties": {
-        "updateTs": {
-          "type": "long"
-        },
-        "fullName": {
-          "type": "string"
-        },
         "addressLine1": {
           "type": "string"
         },
@@ -28,55 +22,64 @@
         "addressLine3": {
           "type": "string"
         },
-        "zipCode": {
+        "addressType": {
           "type": "string"
         },
         "city": {
           "type": "string"
         },
-        "state": {
-          "type": "string"
-        },
         "country": {
-          "type": "string"
-        },
-        "defaultShipping": {
-          "type": "boolean"
-        },
-        "defaultBilling": {
-          "type": "boolean"
-        },
-        "customerId": {
-          "type": "string"
-        },
-        "linkAddressId": {
-          "type": "integer"
-        },
-        "isFPO": {
-          "type": "boolean"
-        },
-        "email": {
-          "type": "string"
-        },
-        "addressType": {
-          "type": "string"
-        },
-        "firstName": {
-          "type": "string"
-        },
-        "lastName": {
-          "type": "string"
-        },
-        "stateName": {
           "type": "string"
         },
         "countryName": {
           "type": "string"
         },
+        "customerId": {
+          "type": "string"
+        },
+        "defaultBilling": {
+          "type": "boolean"
+        },
+        "defaultShipping": {
+          "type": "boolean"
+        },
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "isFPO": {
+          "type": "boolean"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "linkAddressId": {
+          "type": "long"
+        },
         "phone": {
           "type": "string"
         },
         "regionFPO": {
+          "type": "string"
+        },
+        "satoriValidated": {
+          "type": "boolean"
+        },
+        "state": {
+          "type": "string"
+        },
+        "stateName": {
+          "type": "string"
+        },
+        "updateTs": {
+          "type": "long"
+        },
+        "zipCode": {
           "type": "string"
         }
       }
