@@ -13,291 +13,89 @@
     "schema": {
       "type": "object",
       "properties": {
-        "updateTs": {
-          "type": "integer"
-        },
-        "firstName": {
+        "bannerOfOrigin": {
           "type": "string"
         },
-        "lastName": {
+        "birthday": {
           "type": "string"
         },
-        "email": {
+        "changedBy": {
           "type": "string"
         },
-        "profileStatus": {
+        "changedFields": {
           "type": "string"
         },
-        "token": {
-          "type": "null"
+        "country": {
+          "type": "string"
         },
-        "emailHistory": {
-          "type": "array"
+        "created": {
+          "type": "long"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "csaInfo": {
+          "type": "object",
+          "properties": {
+            "csaAgentEmail": {
+              "type": "string"
+            },
+            "zendeskTicketNumber": {
+              "type": "string"
+            }
+          }
+        },
+        "customerFlag": {
+          "type": "string"
         },
         "customerId": {
           "type": "string"
         },
-        "preferredStores": {
+        "customerSyncStatus": {
           "type": "object",
           "properties": {
-            "FL": {
-              "type": "object",
-              "properties": {
-                "storeId": {
-                  "type": "string"
-                },
-                "division": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "phone": {
-                  "type": "string"
-                },
-                "line1": {
-                  "type": "string"
-                },
-                "line2": {
-                  "type": "string"
-                },
-                "city": {
-                  "type": "string"
-                },
-                "state": {
-                  "type": "string"
-                },
-                "country": {
-                  "type": "string"
-                },
-                "zipcode": {
-                  "type": "string"
-                },
-                "isocodeShort": {
-                  "type": "string"
-                },
-                "latitude": {
-                  "type": "number"
-                },
-                "longitude": {
-                  "type": "number"
-                },
-                "status": {
-                  "type": "string"
-                }
-              }
+            "status": {
+              "type": "string"
             },
-            "FA": {
-              "type": "object",
-              "properties": {
-                "storeId": {
-                  "type": "string"
-                },
-                "division": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "phone": {
-                  "type": "string"
-                },
-                "line1": {
-                  "type": "string"
-                },
-                "line2": {
-                  "type": "string"
-                },
-                "city": {
-                  "type": "string"
-                },
-                "state": {
-                  "type": "string"
-                },
-                "country": {
-                  "type": "string"
-                },
-                "zipcode": {
-                  "type": "string"
-                },
-                "isocodeShort": {
-                  "type": "string"
-                },
-                "latitude": {
-                  "type": "number"
-                },
-                "longitude": {
-                  "type": "number"
-                },
-                "status": {
-                  "type": "string"
-                }
-              }
+            "updateTs": {
+              "type": "long"
             },
-            "CS": {
-              "type": "object",
-              "properties": {
-                "storeId": {
-                  "type": "string"
-                },
-                "division": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "phone": {
-                  "type": "string"
-                },
-                "line1": {
-                  "type": "string"
-                },
-                "line2": {
-                  "type": "string"
-                },
-                "city": {
-                  "type": "string"
-                },
-                "state": {
-                  "type": "string"
-                },
-                "country": {
-                  "type": "string"
-                },
-                "zipcode": {
-                  "type": "string"
-                },
-                "isocodeShort": {
-                  "type": "string"
-                },
-                "latitude": {
-                  "type": "number"
-                },
-                "longitude": {
-                  "type": "number"
-                },
-                "status": {
-                  "type": "string"
-                }
-              }
-            },
-            "KFL": {
-              "type": "object",
-              "properties": {
-                "storeId": {
-                  "type": "string"
-                },
-                "division": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "phone": {
-                  "type": "string"
-                },
-                "line1": {
-                  "type": "string"
-                },
-                "line2": {
-                  "type": "string"
-                },
-                "city": {
-                  "type": "string"
-                },
-                "state": {
-                  "type": "string"
-                },
-                "country": {
-                  "type": "string"
-                },
-                "zipcode": {
-                  "type": "string"
-                },
-                "isocodeShort": {
-                  "type": "string"
-                }
+            "process": {
+              "type": "string"
+            }
+          }
+        },
+        "email": {
+          "type": "string"
+        },
+        "emailHistory": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "emailAddress": {
+                "type": "string"
+              },
+              "modificationTS": {
+                "type": "string"
               }
             }
           }
         },
-        "mobileNumber": {
-          "type": "null"
-        },
-        "homeNumber": {
-          "type": "null"
-        },
-        "isRegistered": {
-          "type": "boolean"
-        },
-        "zipCode": {
-          "type": "string"
-        },
-        "schDefaultBillingAddressLine1": {
-          "type": "string"
-        },
-        "schDefaultShippingAddressLine1": {
-          "type": "string"
-        },
-        "region": {
-          "type": "null"
-        },
-        "webhookMessageStatus": {
-          "type": "null"
-        },
-        "janrainUuid": {
-          "type": "string"
-        },
-        "oldFlCid": {
-          "type": "string"
-        },
-        "oldKflCid": {
-          "type": "null"
-        },
-        "oldLflCid": {
-          "type": "null"
-        },
-        "oldFsCid": {
-          "type": "null"
-        },
-        "oldFaCid": {
-          "type": "null"
-        },
-        "oldCsCid": {
-          "type": "string"
-        },
-        "oldFlcaCid": {
-          "type": "null"
-        },
-        "oldEbCid": {
-          "type": "null"
-        },
-        "fraudFlag": {
-          "type": "null"
-        },
-        "bannerOfOrigin": {
-          "type": "string"
-        },
         "emailVerified": {
-          "type": "integer"
+          "type": "long"
         },
-        "militaryStatus": {
+        "enrollmentSource": {
           "type": "string"
         },
-        "militaryRequestId": {
-          "type": "null"
-        },
-        "militaryExpiryDate": {
-          "type": "null"
-        },
-        "storeNumber": {
+        "event": {
           "type": "string"
         },
-        "previousEmail": {
-          "type": "null"
+        "failedLoginAttempts": {
+          "type": "long"
         },
-        "password": {
-          "type": "null"
+        "firstName": {
+          "type": "string"
         },
         "flxInfo": {
           "type": "object",
@@ -318,7 +116,7 @@
               "type": "string"
             },
             "flxNumber": {
-              "type": "integer"
+              "type": "long"
             },
             "ctNumber": {
               "type": "integer"
@@ -327,83 +125,464 @@
               "type": "string"
             },
             "referralCode": {
-              "type": "null"
+              "type": "string"
             }
           }
         },
-        "optIns": {
-          "type": "array"
+        "fraudFlag": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
-        "created": {
-          "type": "integer"
-        },
-        "birthday": {
+        "gender": {
           "type": "string"
+        },
+        "homeNumber": {
+          "type": "long"
         },
         "inStoreSignUp": {
           "type": "boolean"
         },
-        "createdBy": {
-          "type": "string"
-        },
-        "xstoreId": {
-          "type": "null"
-        },
-        "retailStoreId": {
-          "type": "null"
-        },
-        "relateFailure": {
+        "isRegistered": {
           "type": "boolean"
         },
-        "changedFields": {
-          "type": "string"
-        },
-        "csaInfo": {
-          "type": "null"
-        },
-        "customerFlag": {
-          "type": "null"
-        },
-        "event": {
-          "type": "string"
-        },
-        "changedBy": {
-          "type": "string"
-        },
-        "vipInfo": {
-          "type": "null"
-        },
-        "preferredLanguage": {
-          "type": "string"
-        },
-        "lastLogin": {
+        "janrainUuid": {
           "type": "string"
         },
         "lastFailedLogin": {
           "type": "string"
         },
+        "lastLogin": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "militaryExpiryDate": {
+          "type": "string"
+        },
+        "militaryRequestId": {
+          "type": "string"
+        },
+        "militaryStatus": {
+          "type": "string"
+        },
+        "mobileNumber": {
+          "type": "long"
+        },
+        "oldCsCid": {
+          "type": "string"
+        },
+        "oldEbCid": {
+          "type": "string"
+        },
+        "oldFaCid": {
+          "type": "string"
+        },
+        "oldFlCid": {
+          "type": "string"
+        },
+        "oldFlcaCid": {
+          "type": "string"
+        },
+        "oldFsCid": {
+          "type": "string"
+        },
+        "oldKflCid": {
+          "type": "string"
+        },
+        "oldLflCid": {
+          "type": "string"
+        },
+        "optIns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "banner": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "password": {
+          "type": "string"
+        },
         "passwordChangeDate": {
-          "type": "null"
+          "type": "string"
         },
-        "failedLoginAttempts": {
-          "type": "integer"
+        "preferredLanguage": {
+          "type": "string"
         },
-        "streetAddress": {
-          "type": "null"
+        "preferredStores": {
+          "type": "object",
+          "properties": {
+            "CS": {
+              "type": "object",
+              "properties": {
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "division": {
+                  "type": "string"
+                },
+                "isocodeShort": {
+                  "type": "string"
+                },
+                "latitude": {
+                  "type": "double"
+                },
+                "line1": {
+                  "type": "string"
+                },
+                "line2": {
+                  "type": "string"
+                },
+                "longitude": {
+                  "type": "double"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "storeId": {
+                  "type": "string"
+                },
+                "zipcode": {
+                  "type": "string"
+                }
+              }
+            },
+            "FA": {
+              "type": "object",
+              "properties": {
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "division": {
+                  "type": "string"
+                },
+                "isocodeShort": {
+                  "type": "string"
+                },
+                "latitude": {
+                  "type": "double"
+                },
+                "line1": {
+                  "type": "string"
+                },
+                "line2": {
+                  "type": "string"
+                },
+                "longitude": {
+                  "type": "double"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "storeId": {
+                  "type": "string"
+                },
+                "zipcode": {
+                  "type": "string"
+                }
+              }
+            },
+            "FL": {
+              "type": "object",
+              "properties": {
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "division": {
+                  "type": "string"
+                },
+                "isocodeShort": {
+                  "type": "string"
+                },
+                "latitude": {
+                  "type": "double"
+                },
+                "line1": {
+                  "type": "string"
+                },
+                "line2": {
+                  "type": "string"
+                },
+                "longitude": {
+                  "type": "double"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "storeId": {
+                  "type": "string"
+                },
+                "zipcode": {
+                  "type": "string"
+                }
+              }
+            },
+            "KFL": {
+              "type": "object",
+              "properties": {
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "division": {
+                  "type": "string"
+                },
+                "isocodeShort": {
+                  "type": "string"
+                },
+                "latitude": {
+                  "type": "double"
+                },
+                "line1": {
+                  "type": "string"
+                },
+                "line2": {
+                  "type": "string"
+                },
+                "longitude": {
+                  "type": "double"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "storeId": {
+                  "type": "string"
+                },
+                "zipcode": {
+                  "type": "string"
+                }
+              }
+            },
+            "LFL": {
+              "type": "object",
+              "properties": {
+                "city": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "division": {
+                  "type": "string"
+                },
+                "isocodeShort": {
+                  "type": "string"
+                },
+                "latitude": {
+                  "type": "double"
+                },
+                "line1": {
+                  "type": "string"
+                },
+                "line2": {
+                  "type": "string"
+                },
+                "longitude": {
+                  "type": "double"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "storeId": {
+                  "type": "string"
+                },
+                "zipcode": {
+                  "type": "string"
+                }
+              }
+            }
+          }
         },
-        "country": {
-          "type": "null"
+        "previousEmail": {
+          "type": "string"
         },
-        "gender": {
-          "type": "null"
+        "profileStatus": {
+          "type": "string"
         },
-        "customerSyncStatus": {
-          "type": "null"
-        },
-        "updateTsExceptLogin": {
-          "type": "integer"
+        "region": {
+          "type": "string"
         },
         "relateCustomerId": {
+          "type": "string"
+        },
+        "relateFailure": {
+          "type": "boolean"
+        },
+        "retailStoreId": {
+          "type": "integer"
+        },
+        "schDefaultBillingAddressLine1": {
+          "type": "string"
+        },
+        "schDefaultShippingAddressLine1": {
+          "type": "string"
+        },
+        "storeNumber": {
+          "type": "string"
+        },
+        "streetAddress": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "updateTs": {
+          "type": "long"
+        },
+        "updateTsExceptLogin": {
+          "type": "long"
+        },
+        "vipInfo": {
+          "type": "object",
+          "properties": {
+            "dollarsNeedToSpend": {
+              "type": "object",
+              "properties": {
+                "currencyIso": {
+                  "type": "string"
+                },
+                "formattedValue": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "double"
+                }
+              }
+            },
+            "loyaltyMinThreshold": {
+              "type": "object",
+              "properties": {
+                "currencyIso": {
+                  "type": "string"
+                },
+                "formattedValue": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "double"
+                }
+              }
+            },
+            "dollarsSpent": {
+              "type": "object",
+              "properties": {
+                "currencyIso": {
+                  "type": "string"
+                },
+                "formattedValue": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "double"
+                }
+              }
+            },
+            "loyaltyTargetThreshold": {
+              "type": "object",
+              "properties": {
+                "currencyIso": {
+                  "type": "string"
+                },
+                "formattedValue": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "double"
+                }
+              }
+            },
+            "vipNumber": {
+              "type": "string"
+            },
+            "lastLevelUpdateDateHyb": {
+              "type": "long"
+            },
+            "lastLevelMoveDate": {
+              "type": "long"
+            },
+            "loyaltyExpireDate": {
+              "type": "long"
+            },
+            "isVip": {
+              "type": "boolean"
+            },
+            "lifeTimePoints": {
+              "type": "long"
+            },
+            "status": {
+              "type": "string"
+            }
+          }
+        },
+        "webhookMessageStatus": {
+          "type": "string"
+        },
+        "xstoreId": {
+          "type": "string"
+        },
+        "zipCode": {
           "type": "string"
         }
       }
