@@ -70,7 +70,18 @@
           "type": "string"
         },
         "emailHistory": {
-          "type": "array"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "emailAddress": {
+                "type": "string"
+              },
+              "modificationTS": {
+                "type": "string"
+              }
+            }
+          }
         },
         "janrainUuid": {
           "type": "string"
