@@ -315,10 +315,19 @@
             }
           }
         },
-        "customerSyncStatus":{
-          "status": "string",
-          "updateTs": "long",
-          "process": "string"
+        "customerSyncStatus": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "updateTs": {
+              "type": "long"
+            },
+            "process": {
+              "type": "string"
+            }
+          }
         },
         "createdBy": {
           "type": "string"
