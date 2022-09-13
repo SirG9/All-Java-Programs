@@ -1,0 +1,57 @@
+{
+  "name": "pl_janrain_profile_range_uat",
+  "properties": {
+    "activities": [
+      {
+        "name": "df_janrain_filter_uat",
+        "type": "ExecuteDataFlow",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "1.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "userProperties": [],
+        "typeProperties": {
+          "dataflow": {
+            "referenceName": "df_janrain_filter_range_uat",
+            "type": "DataFlowReference",
+            "parameters": {
+              "startDate": {
+                "value": "@pipeline().parameters.startDate",
+                "type": "Expression"
+              },
+              "endDate": {
+                "value": "@pipeline().parameters.endDate",
+                "type": "Expression"
+              }
+            }
+          },
+          "integrationRuntime": {
+            "referenceName": "Azure-Secured-Integration-Runtime",
+            "type": "IntegrationRuntimeReference"
+          },
+          "traceLevel": "Fine"
+        }
+      }
+    ],
+    "parameters": {
+      "startDate": {
+        "type": "string",
+        "defaultValue": "'2022-04-01'"
+      },
+      "endDate": {
+        "type": "string",
+        "defaultValue": "'2022-04-30'"
+      }
+    },
+    "folder": {
+      "name": "ccore/TDATA-4433/uat/profiles_range"
+    },
+    "annotations": [],
+    "lastPublishTime": "2022-09-08T07:13:03Z"
+  },
+  "type": "Microsoft.DataFactory/factories/pipelines"
+}

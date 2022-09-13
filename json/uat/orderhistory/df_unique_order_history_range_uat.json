@@ -1,0 +1,62 @@
+{
+  "name": "df_unique_order_history_range_uat",
+  "properties": {
+    "folder": {
+      "name": "ccore/TDATA-4433/uat/profiles_range"
+    },
+    "type": "MappingDataFlow",
+    "typeProperties": {
+      "sources": [
+        {
+          "dataset": {
+            "referenceName": "ds_csv_na_ca_orders_range_uat",
+            "type": "DatasetReference"
+          },
+          "name": "orderHistory"
+        }
+      ],
+      "sinks": [
+        {
+          "dataset": {
+            "referenceName": "ds_csv_na_ca_unique_orders_range_uat",
+            "type": "DatasetReference"
+          },
+          "name": "sinkUniqueOrderHistory"
+        }
+      ],
+      "transformations": [
+        {
+          "name": "getUniqueCustomerEmail"
+        },
+        {
+          "name": "lowerCaseEmail"
+        }
+      ],
+      "scriptLines": [
+        "source(output(",
+        "          customerId as string,",
+        "          email as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     ignoreNoFilesFound: false) ~> orderHistory",
+        "lowerCaseEmail aggregate(groupBy(email),",
+        "     each(match(name!='email'), $$ = first($$))) ~> getUniqueCustomerEmail",
+        "orderHistory derive(email = lower(email)) ~> lowerCaseEmail",
+        "getUniqueCustomerEmail sink(allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     input(",
+        "          customerId as string,",
+        "          email as string",
+        "     ),",
+        "     partitionFileNames:['na-ca-orders-history-unique-emails.csv'],",
+        "     umask: 0022,",
+        "     preCommands: [],",
+        "     postCommands: [],",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     partitionBy('hash', 1)) ~> sinkUniqueOrderHistory"
+      ]
+    }
+  }
+}

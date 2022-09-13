@@ -1,0 +1,243 @@
+{
+  "name": "df_janrain_filter_range_uat",
+  "properties": {
+    "folder": {
+      "name": "ccore/TDATA-4433/uat/profiles_range"
+    },
+    "type": "MappingDataFlow",
+    "typeProperties": {
+      "sources": [
+        {
+          "dataset": {
+            "referenceName": "ds_csv_sto_janrain_na_profiles_range_uat",
+            "type": "DatasetReference"
+          },
+          "name": "JanrainNaProfile"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_na_profiles_uat",
+            "type": "DatasetReference"
+          },
+          "name": "GlobalProfile"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_csv_sto_janrain_ca_profiles_range_uat",
+            "type": "DatasetReference"
+          },
+          "name": "JanrainCaProfile"
+        }
+      ],
+      "sinks": [
+        {
+          "dataset": {
+            "referenceName": "ds_csv_sto_janrain_profiles_range_uat",
+            "type": "DatasetReference"
+          },
+          "name": "SinkJanrainNaProfiles"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_csv_sto_janrain_na_eliminated_profiles_range_uat",
+            "type": "DatasetReference"
+          },
+          "name": "EliminatedNaJanrainProfiles"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_csv_sto_janrain_ca_eliminated_profiles_range_uat",
+            "type": "DatasetReference"
+          },
+          "name": "JanrainCaEliminatedProfiles"
+        }
+      ],
+      "transformations": [
+        {
+          "name": "JanrainNaProfileExistsInGlobalProfile"
+        },
+        {
+          "name": "JanrainCaProfileExistsInGlobalProfile"
+        },
+        {
+          "name": "JanrainUniqueCaProfiles"
+        },
+        {
+          "name": "JanrainNaUnionCaProfiles"
+        },
+        {
+          "name": "JanrainNaProfilesDoesNotExistsInGlobalProfiles"
+        },
+        {
+          "name": "JanrainCaProfilesDoesNotExistsInGlobalProfiles"
+        },
+        {
+          "name": "filter1"
+        },
+        {
+          "name": "filter2"
+        },
+        {
+          "name": "filter3"
+        },
+        {
+          "name": "filter4"
+        }
+      ],
+      "scriptLines": [
+        "parameters{",
+        "     startDate as string ('2022-04-01'),",
+        "     endDate as string ('2022-04-30')",
+        "}",
+        "source(output(",
+        "          email as string,",
+        "          lastUpdated as string,",
+        "          uuid as string,",
+        "          created as string,",
+        "          ssoComplete as string,",
+        "          password as string,",
+        "          emailVerified as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     ignoreNoFilesFound: false) ~> JanrainNaProfile",
+        "source(output(",
+        "          birthday as string,",
+        "          country as string,",
+        "          lastName as string,",
+        "          zipCode as string,",
+        "          preferredLanguage as string,",
+        "          storeNumber as string,",
+        "          flxInfo as (flxEmailOptIn as boolean, loyaltyStatus as boolean, flxTcVersion as string, tier as string, flxNumber as integer, loyaltyFlxEmailOptInBanner as string, ctNumber as integer, points as integer),",
+        "          mobileNumber as integer,",
+        "          changedFields as string,",
+        "          profileStatus as string,",
+        "          emailHistory as string[],",
+        "          janrainUuid as string,",
+        "          changedBy as string,",
+        "          customerId as string,",
+        "          relateCustomerId as string,",
+        "          event as string,",
+        "          email as string,",
+        "          fraudFlag as string[],",
+        "          created as integer,",
+        "          token as string,",
+        "          bannerOfOrigin as string,",
+        "          emailVerified as integer,",
+        "          firstName as string,",
+        "          optIns as (banner as string)[],",
+        "          preferredStores as (CS as (country as string, city as string, latitude as double, storeId as string, division as string, zipcode as string, phone as string, name as string, state as string, line2 as string, line1 as string, isocodeShort as string, longitude as double, status as string), KFL as (country as string, city as string, latitude as double, storeId as string, division as string, zipcode as string, phone as string, name as string, state as string, line2 as string, line1 as string, isocodeShort as string, longitude as double, status as string), FL as (country as string, city as string, latitude as double, storeId as string, division as string, zipcode as string, phone as string, name as string, state as string, line2 as string, line1 as string, isocodeShort as string, longitude as double, status as string), FA as (country as string, city as string, latitude as double, storeId as string, division as string, zipcode as string, phone as string, name as string, state as string, line2 as string, line1 as string, isocodeShort as string, longitude as double, status as string)),",
+        "          createdBy as string,",
+        "          inStoreSignUp as boolean,",
+        "          isRegistered as boolean,",
+        "          region as string,",
+        "          updateTs as integer,",
+        "          updateTsExceptLogin as integer,",
+        "          schDefaultShippingAddressLine1 as string,",
+        "          schDefaultBillingAddressLine1 as string,",
+        "          militaryStatus as string,",
+        "          retailStoreId as integer,",
+        "          xstoreId as string,",
+        "          lastLogin as string,",
+        "          lastFailedLogin as string,",
+        "          failedLoginAttempts as integer,",
+        "          gender as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     format: 'document') ~> GlobalProfile",
+        "source(output(",
+        "          email as string,",
+        "          lastUpdated as string,",
+        "          uuid as string,",
+        "          created as string,",
+        "          ssoComplete as string,",
+        "          emailVerified as string,",
+        "          password as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     ignoreNoFilesFound: false) ~> JanrainCaProfile",
+        "filter2, GlobalProfile exists(JanrainNaProfile@email == GlobalProfile@email,",
+        "     negate:false,",
+        "     broadcast: 'auto')~> JanrainNaProfileExistsInGlobalProfile",
+        "filter4, GlobalProfile exists(JanrainCaProfile@email == GlobalProfile@email,",
+        "     negate:false,",
+        "     broadcast: 'auto')~> JanrainCaProfileExistsInGlobalProfile",
+        "JanrainCaProfileExistsInGlobalProfile, JanrainNaProfileExistsInGlobalProfile exists(JanrainCaProfile@email == JanrainNaProfile@email,",
+        "     negate:true,",
+        "     broadcast: 'auto')~> JanrainUniqueCaProfiles",
+        "JanrainNaProfileExistsInGlobalProfile, JanrainUniqueCaProfiles union(byName: true)~> JanrainNaUnionCaProfiles",
+        "filter1, GlobalProfile exists(JanrainNaProfile@email == GlobalProfile@email,",
+        "     negate:true,",
+        "     broadcast: 'auto')~> JanrainNaProfilesDoesNotExistsInGlobalProfiles",
+        "filter3, GlobalProfile exists(JanrainCaProfile@email == GlobalProfile@email,",
+        "     negate:true,",
+        "     broadcast: 'auto')~> JanrainCaProfilesDoesNotExistsInGlobalProfiles",
+        "JanrainNaProfile filter(and(greaterOrEqual(toTimestamp(created,'yyyy-MM-dd HH:mm:ss'),toTimestamp($startDate,'yyyy-MM-dd')),",
+        "lesserOrEqual(toTimestamp(created,'yyyy-MM-dd HH:mm:ss'),toTimestamp($endDate,'yyyy-MM-dd')))) ~> filter1",
+        "JanrainNaProfile filter(and(greaterOrEqual(toTimestamp(created,'yyyy-MM-dd HH:mm:ss'),toTimestamp($startDate,'yyyy-MM-dd')),",
+        "lesserOrEqual(toTimestamp(created,'yyyy-MM-dd HH:mm:ss'),toTimestamp($endDate,'yyyy-MM-dd')))) ~> filter2",
+        "JanrainCaProfile filter(and(greaterOrEqual(toTimestamp(created,'yyyy-MM-dd HH:mm:ss'),toTimestamp($startDate,'yyyy-MM-dd')),",
+        "lesserOrEqual(toTimestamp(created,'yyyy-MM-dd HH:mm:ss'),toTimestamp($endDate,'yyyy-MM-dd')))) ~> filter3",
+        "JanrainCaProfile filter(and(greaterOrEqual(toTimestamp(created,'yyyy-MM-dd HH:mm:ss'),toTimestamp($startDate,'yyyy-MM-dd')),",
+        "lesserOrEqual(toTimestamp(created,'yyyy-MM-dd HH:mm:ss'),toTimestamp($endDate,'yyyy-MM-dd')))) ~> filter4",
+        "JanrainNaUnionCaProfiles sink(allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     input(",
+        "          email as string,",
+        "          lastUpdated as string,",
+        "          uuid as string,",
+        "          created as string,",
+        "          ssoComplete as string,",
+        "          emailVerified as string,",
+        "          password as string",
+        "     ),",
+        "     partitionFileNames:['footlocker-uat-user-merged.csv'],",
+        "     umask: 0022,",
+        "     preCommands: [],",
+        "     postCommands: [],",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     saveOrder: 0,",
+        "     partitionBy('hash', 1)) ~> SinkJanrainNaProfiles",
+        "JanrainNaProfilesDoesNotExistsInGlobalProfiles sink(allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     input(",
+        "          email as string,",
+        "          lastUpdated as string,",
+        "          uuid as string,",
+        "          created as string,",
+        "          ssoComplete as string,",
+        "          emailVerified as string,",
+        "          password as string",
+        "     ),",
+        "     partitionFileNames:['footlocker-uat-na-user-eliminated.csv'],",
+        "     umask: 0022,",
+        "     preCommands: [],",
+        "     postCommands: [],",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     partitionBy('hash', 1)) ~> EliminatedNaJanrainProfiles",
+        "JanrainCaProfilesDoesNotExistsInGlobalProfiles sink(allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     input(",
+        "          email as string,",
+        "          lastUpdated as string,",
+        "          uuid as string,",
+        "          created as string,",
+        "          ssoComplete as string,",
+        "          emailVerified as string,",
+        "          password as string",
+        "     ),",
+        "     partitionFileNames:['footlocker-uat-ca-user-eliminated.csv'],",
+        "     umask: 0022,",
+        "     preCommands: [],",
+        "     postCommands: [],",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true,",
+        "     partitionBy('hash', 1)) ~> JanrainCaEliminatedProfiles"
+      ]
+    }
+  }
+}

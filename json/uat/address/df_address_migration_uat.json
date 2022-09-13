@@ -1,0 +1,207 @@
+{
+  "name": "df_address_migration_uat",
+  "properties": {
+    "folder": {
+      "name": "ccore/TDATA-4433/uat"
+    },
+    "type": "MappingDataFlow",
+    "typeProperties": {
+      "sources": [
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_na_address_uat",
+            "type": "DatasetReference"
+          },
+          "name": "NaAddress"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_na_profiles_uat",
+            "type": "DatasetReference"
+          },
+          "name": "GlobalProfile"
+        },
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_ca_address_uat",
+            "type": "DatasetReference"
+          },
+          "name": "CaAddress"
+        }
+      ],
+      "sinks": [
+        {
+          "dataset": {
+            "referenceName": "ds_cntnr_na_addresses_uat",
+            "type": "DatasetReference"
+          },
+          "name": "GlobalAddress"
+        }
+      ],
+      "transformations": [
+        {
+          "name": "FilteredNaAddresses"
+        },
+        {
+          "name": "FilteredCaAddresses"
+        },
+        {
+          "name": "UnionExistAndDExist"
+        },
+        {
+          "name": "DerShippingBilling"
+        },
+        {
+          "name": "CaInnerJoinNa"
+        },
+        {
+          "name": "repCustCaID"
+        },
+        {
+          "name": "selectOnlyCaFields"
+        }
+      ],
+      "scriptLines": [
+        "source(output(",
+        "          zipCode as string,",
+        "          country as string,",
+        "          city as string,",
+        "          addressType as string,",
+        "          fullName as string,",
+        "          defaultBilling as boolean,",
+        "          stateName as string,",
+        "          customerId as string,",
+        "          linkAddressId as long,",
+        "          addressLine1 as string,",
+        "          addressLine2 as string,",
+        "          addressLine3 as string,",
+        "          state as string,",
+        "          countryName as string,",
+        "          updateTs as long,",
+        "          email as string,",
+        "          defaultShipping as boolean,",
+        "          firstName as string,",
+        "          lastName as string,",
+        "          phone as string,",
+        "          isFPO as boolean,",
+        "          regionFPO as string,",
+        "          satoriValidated as boolean",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     format: 'document',",
+        "     systemColumns: true) ~> NaAddress",
+        "source(output(",
+        "          customerId as string,",
+        "          email as string",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     format: 'document') ~> GlobalProfile",
+        "source(output(",
+        "          zipCode as string,",
+        "          country as string,",
+        "          city as string,",
+        "          addressType as string,",
+        "          fullName as string,",
+        "          defaultBilling as boolean,",
+        "          stateName as string,",
+        "          customerId as string,",
+        "          linkAddressId as long,",
+        "          addressLine1 as string,",
+        "          addressLine2 as string,",
+        "          addressLine3 as string,",
+        "          state as string,",
+        "          countryName as string,",
+        "          updateTs as long,",
+        "          email as string,",
+        "          defaultShipping as boolean,",
+        "          firstName as string,",
+        "          lastName as string,",
+        "          phone as string,",
+        "          isFPO as boolean,",
+        "          regionFPO as string,",
+        "          satoriValidated as boolean",
+        "     ),",
+        "     allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     format: 'document',",
+        "     systemColumns: true) ~> CaAddress",
+        "NaAddress, GlobalProfile exists(NaAddress@email ==GlobalProfile@email,",
+        "     negate:false,",
+        "     broadcast: 'auto')~> FilteredNaAddresses",
+        "CaAddress, GlobalProfile exists(CaAddress@email == GlobalProfile@email,",
+        "     negate:false,",
+        "     broadcast: 'auto')~> FilteredCaAddresses",
+        "FilteredNaAddresses, selectOnlyCaFields union(byName: true)~> UnionExistAndDExist",
+        "FilteredCaAddresses derive(defaultShipping = toBoolean('false'),",
+        "          defaultBilling = toBoolean('false')) ~> DerShippingBilling",
+        "DerShippingBilling, GlobalProfile join(equals(CaAddress@email, GlobalProfile@email),",
+        "     joinType:'cross',",
+        "     matchType:'exact',",
+        "     ignoreSpaces: false,",
+        "     broadcast: 'auto')~> CaInnerJoinNa",
+        "CaInnerJoinNa derive(customerId = GlobalProfile@customerId) ~> repCustCaID",
+        "repCustCaID select(mapColumn(",
+        "          zipCode,",
+        "          country,",
+        "          city,",
+        "          addressType,",
+        "          fullName,",
+        "          defaultBilling,",
+        "          stateName,",
+        "          customerId,",
+        "          linkAddressId,",
+        "          addressLine1,",
+        "          addressLine2,",
+        "          addressLine3,",
+        "          state,",
+        "          countryName,",
+        "          updateTs,",
+        "          email = CaAddress@email,",
+        "          defaultShipping,",
+        "          firstName,",
+        "          lastName,",
+        "          phone,",
+        "          isFPO,",
+        "          regionFPO,",
+        "          satoriValidated,",
+        "          id",
+        "     ),",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true) ~> selectOnlyCaFields",
+        "UnionExistAndDExist sink(allowSchemaDrift: true,",
+        "     validateSchema: false,",
+        "     input(",
+        "          zipCode as string,",
+        "          country as string,",
+        "          city as string,",
+        "          addressType as string,",
+        "          fullName as string,",
+        "          defaultBilling as boolean,",
+        "          stateName as string,",
+        "          customerId as string,",
+        "          linkAddressId as long,",
+        "          addressLine1 as string,",
+        "          addressLine2 as string,",
+        "          state as string,",
+        "          countryName as string,",
+        "          updateTs as long,",
+        "          email as string,",
+        "          defaultShipping as boolean",
+        "     ),",
+        "     deletable:false,",
+        "     insertable:true,",
+        "     updateable:false,",
+        "     upsertable:false,",
+        "     recreate:true,",
+        "     format: 'document',",
+        "     batchSize: 5000,",
+        "     partitionKey: ['/email'],",
+        "     throughput: 10000,",
+        "     skipDuplicateMapInputs: true,",
+        "     skipDuplicateMapOutputs: true) ~> GlobalAddress"
+      ]
+    }
+  }
+}
